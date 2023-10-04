@@ -20,7 +20,7 @@
 
 <body class="bg-light ">
     <!-- navbar awal -->
-    <nav class="navbar navbar-expand-lg bg-light fixed-top ">
+    <!-- <nav class="navbar navbar-expand-lg bg-light sticky-top ">
       <div class="container-fluid ">
         <img src="gambar/Logo-Kabupaten-Nganjuk-Warna-removebg-preview 2.png" height="80">
         <a class="navbar-brand" href="#">Desa Pesudukuh <br>Kecamatan Bagor</a>
@@ -28,8 +28,9 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item dropdown">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 "> -->
+            <!-- <ul class="nav justify-content-end "> -->
+            <!-- <li class="nav-item dropdown"> 
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Profil Desa
               </a>
@@ -51,8 +52,52 @@
          </ul>
         </div>
       </div>
-    </nav>
+    </nav> -->
     <!-- navbar akhir -->
+
+    <!-- navbar awal 2 -->
+    <nav class="navbar navbar-expand-lg sticky-top bg-light"  >
+      <div class="container-fluid">
+        <!-- Image and Text -->
+        <a class="navbar-brand" href="#">
+          <img src="gambar/Logo-Kabupaten-Nganjuk-Warna-removebg-preview 2.png" alt="Logo" style=" max-height: 70px; margin-right: 10px; margin-top: -30px;">
+          <span class="d-inline-block" style="font-weight: 500;">Desa Pesudukuh  <br>Kecamatan Bagor</span>
+        </a>
+    
+        <!-- Navbar Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <!-- Navbar Items -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="nav justify-content-end " >
+            <li class="nav-item dropdown"> 
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Profil Desa
+              </a>
+              <ul class="dropdown-menu" >
+                <li><a class="dropdown-item" href="#">Visi-Misi</a></li>
+                <li><a class="dropdown-item" href="#">Struktur Organisasi</a></li>
+              </ul>
+            </li>
+    
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pemerintahan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pengumuman</a>
+            </li>
+          <li class="nav-item">
+            <a class="btn btn-primary" href="login.html">Login Admin</a>
+          </li>
+         </ul>
+        </div>
+      </div>
+    </nav>
+<!-- navbar akhir 2 -->
+
+
 <!-- awal gambar  -->
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
   <div class="carousel-indicators">
@@ -85,24 +130,28 @@
 <br>
 <br>
 <p>
-  <div class="col-6" style="color: black;">
+  
+  <div class="p-3 col-lg-6" style="color: black; font-weight: bold;">
     <h1>“Selamat Datang di Website 
     Desa kami”
     </h1>
   </div>
-    <div class="col-7">
-      <h5 style="font-style: normal ; ">
+    <div class="col-12">
+      <div class="p-3 col-md-6">
+      <h5 style="font-style: normal ;font-weight: normal; text-align: justify;">
       Kami senang Anda sudah berkunjung, semoga melalui situs 
       web ini kami dapat memberikan segala kemudahan dalam pengajuan 
       surat - surat kepada pemerintah desa kami. Situs web ini 
       merupakan salah satu wujud dari komitmen pemerintah desa, 
-      pada pentingnya digitaliasi dan efisienensi zaman.
+      pada pentingnya digitalisasi dan efisienensi zaman.
       <br>
       <br>
-      <div style="font-style: bold;">
+      <div style="font-weight: 500;">
       Romi Yumiani, Kepala Desa Pesudukuh
-    </div>
+      </div>
     </h5>
+    </div>
+    
 </p>
    
 
@@ -117,22 +166,25 @@
 
 </body>
 
-<footer class="sticky-footer bg-white">
+<!-- <footer class="sticky-footer bg-white">
   <div class="container my-auto">
       <div class="text-center my-auto">
          
           
       </div>
-  </div>
-</footer>
-<footer class="py-4 bg-light mt-auto">
-  <div class="container-fluid px-4">
-      <div class="d-flex align-items-center  small">
+  </div> -->
+<!-- </footer> -->
+<!-- <footer class="py-4 bg-dark mt-auto"> -->
+  <footer class="sticky-footer bg-white mt-auto py-4 g-col-12">
+  <!-- <div class="container-fluid"> -->
+    <div class="container my-auto">
+      <!-- <div class="d-flex justify-content-center medium">-->
+        <div class="text-center my-auto">
         <img src="gambar/logo.png" height="35dp" width="60dp">
 
         <!-- <span>
           &copy; 2023 Di Develop oleh P-RESH</span> -->
-          <div class="text-muted">&copy; P-Resh Developer</div>
+          <span class="text-muted">&copy; Copyright 2023 P-Resh Developer</span>
           <!-- <div>
               <a href="#">Privacy Policy</a>
               &middot;
