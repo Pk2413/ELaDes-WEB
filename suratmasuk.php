@@ -66,38 +66,9 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
-                        
-                            <br>
-                        
-                            <div>
-                    <table border="2">
-                        <tr>
-                            <th>NO</th>
-                            <th>Username</th>
-                            <th>Password</th>
-                            <th>Email</th>
-                        </tr>
-                        <?php
-                        include "koneksi.php";
-
-                        $no = 1;
-                        $ambildata = mysqli_query($conn, "Select * from akun_admin");
-                        while ($tampil = mysqli_fetch_array($ambildata)){
-                            echo"
-                            <tr>
-                                <td>$no</th>
-                                <td>$tampil[username]</th>
-                                <td>$tampil[password]</th>
-                                <td>$tampil[email]</th>
-                            </tr>";
-                            $no++;
-                        }
-
-                        ?>
-                       
-                    </table>
-                    </div>
+                        <h1 class="mt-4">Surat Masuk</h1>
+                        <div>
+                            
                         </div>
                     </div>
                 </main>
