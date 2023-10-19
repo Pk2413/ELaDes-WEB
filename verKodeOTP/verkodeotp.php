@@ -10,7 +10,7 @@ $otp ;
 
 if (!isset($_SESSION['kode_otp'])) {
 //     // Generate random OTP if it doesn't exist in the session
-    $otp = mt_rand(100000, 999999);
+    $otp = mt_rand(000000, 999999);
     $_SESSION['kode_otp'] = $otp;
     $query = "update akun_admin set kode_otp='$otp' where username='$username'";
     $update = mysqli_query($conn, $query);
@@ -29,13 +29,15 @@ if($row){
 }
 echo $kode;
 
-// if (!$update) {
-//     die("Error in query: " . mysqli_error($conn));
-// }
-
 if($kode_otp == $kode){
     header("Location: ../ubahpassword/");
     exit();
+}else{
+    $erorMessage = "kode_otp salah!!!";
+    echo '<script>';
+    echo 'alert("'.$erorMessage.'  kode = '.$kode.'");';
+    echo 'window.location.href = "index.html";';
+    echo '</script>';
 }
 }
 

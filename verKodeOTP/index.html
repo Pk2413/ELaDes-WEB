@@ -7,28 +7,30 @@
     <link rel="stylesheet" href="kodeOtp.css">
 </head>
 <body>
-    <div class="frame"></div>
+    <div class="frame">
     <div class="contain">
         <ul class="ul-contain">
             <H1 class="H1-contain">Kode OTP Verifikasi</H1>
             <li>Silahkan Periksa Email Anda Untuk </li>
             <li>Melihat Kode OTP Verifikasi</li>
+            <br>
         </ul>
     </div>
     <div class="form-otp">
         <!-- form otp -->
         <form action="verkodeotp.php" method="POST">
-            <label>Kode OTP</label> <br>
-            <input  type="text" placeholder="Masukkan Kode OTP" id="kode_otp" name="kode_otp" required>
-        
-    </div>
+            <label class="label" for="kode_otp">Kode OTP</label>
+            <input  type="number" placeholder="Masukkan Kode OTP" id="kode_otp" name="kode_otp" required/>
     <div class="btn">
-        <button type="submit"> Verifikasi</button> <br>
+        <button type="submit" > Verifikasi</button> <br>
     </div>
 </form>
+</div>
+</div>
     <!-- form otp end -->
     <!-- footer -->
     <div class="footer">
+        
         <h2 class="cap">© 2023 Di Develop oleh P - RESH</h2>
     </div>
     <!-- footer end -->

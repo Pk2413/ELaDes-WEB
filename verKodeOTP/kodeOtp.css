@@ -1,6 +1,7 @@
 *,html{
     padding: 0;
     margin: 0;
+    
 }
 body{
     font-family: 'Nunito', sans-serif;
@@ -8,6 +9,7 @@ body{
 }
 .frame {
     height: 100;
+    
 }
 .contain{
     margin-top: 200px;
@@ -20,7 +22,8 @@ body{
     list-style-type: none;
 }
 label{
-    display: block;
+    display: flex;
+    justify-content: center;
     
 }
 h1{
@@ -30,8 +33,9 @@ h1{
 .form-otp{
     display: flex;
     justify-content: center;
-    margin-top: 0px;
-    
+    align-items: center;
+    flex-direction: column;
+
 }
 input{
     display: flex;
@@ -55,16 +59,24 @@ button{
     background-color: #3255D0;
     font-weight: 600;
     width: 200px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    margin-left: 45%;
+    /* align-items: center; */
+    /* justify-content: center;
+    display: flex; */
+    
     margin-top: 30px;
     margin-bottom: 0px;
 }
 button:hover{
     opacity: 0.8;
 }
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+   
+}
+
 
 .footer{
     width: 100%;

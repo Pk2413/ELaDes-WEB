@@ -21,26 +21,27 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
                                     <div class="card-body">
-                                        <form method="POST" action="login.php" id="login_proses">
+                                        <form method="POST">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="username" name="username" type="text" placeholder="Username" />
+                                                <input class="form-control" id="username" name="username" type="text" placeholder="Username" required/>
                                                 <label for="username">Username</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="password" name="password" type="password" placeholder="Password" />
+                                                <input class="form-control" id="password" name="password" type="password" placeholder="Password" required/>
                                                 <label for="password">Password</label>
                                             </div>
                                             <div class="form-check mb-3">
-                                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
+                                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="true" />
                                                 <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="password.html">Forgot Password?</a>
+                                                <a class="small" href="verKodeOtp/">Forgot Password?</a>
                                                 <input class="btn btn-primary" type="submit" value="Login">
                                             </div>
                                             <?php
                                                 // Sisipkan file koneksi.php untuk menghubungkan ke database
                                                 include("koneksi.php");
+                                               
 
                                                 // Ambil nilai yang dimasukkan oleh pengguna
                                                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -49,19 +50,40 @@
 
                                                     $berhasil = "Berhasil Login";
 
+                                                    $successMessage = "Login successful";
+                                                    $erorMessage = "Login failed. Please try again.";
+
+
                                                     // Query SQL untuk memeriksa apakah pengguna terdaftar di tabel admin
-                                                    $query = "SELECT * FROM akun_admin WHERE username = '$username' AND password = '$password'";
+                                                    // $query = "SELECT * FROM akun_admin WHERE username = '$username' AND password = '$password';";
+                                                    // echo $query;
+
                                                     // $result = $conn->query($query);
-                                                    $result = mysqli_query($conn, $query);
+                                                    $query = "SELECT * FROM akun_admin WHERE username = ? AND password = ?";
+                                                    $stmt = mysqli_prepare($conn, $query);
+                                                    mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+                                                    mysqli_stmt_execute($stmt);
+                                                    $result = mysqli_stmt_get_result($stmt);
+                                                    // echo $result;
+
 
                                                     if (mysqli_num_rows($result) == 1) {
                                                         // Jika pengguna terdaftar, alihkan ke halaman welcome.php atau halaman lain yang sesuai
                                                         header("location: dashboard.php");
                                                         // $response = array('status' => 'success', 'message' => 'Login berhasil');
-                                                        // exit();
+                                                        // echo '<script>';
+                                                        // echo 'alert("' . $successMessage . '");';
+                                                        // echo 'window.location.href = "dashboard.php";';
+                                                        // echo '</script>';
+                                                        exit();
                                                     }else{
-                                                        header("location: login.php");
+                                                        // header("location: login.php");
                                                         // $response = array('status' => 'error', 'message' => 'Login gagal. Coba lagi.');
+                                                        echo '<script>';
+                                                        echo 'alert("'.$erorMessage.'");';
+                                                        echo 'window.location.href = "login.php";';
+                                                        echo '</script>';
+
                                                     }
                                                     
                                                 }

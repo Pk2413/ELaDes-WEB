@@ -31,11 +31,20 @@ if ($row) {
         exit();
     } else {
         // Jika password tidak sesuai, beri tahu pengguna
-        echo "Password baru dan konfirmasi password tidak cocok.";
+        $pesan = "Password lama salah.";
+                                                        echo '<script>';
+                                                        echo 'alert("'.$pesan.'");';
+                                                        echo 'window.location.href = "index.html";';
+                                                        echo '</script>';
+
     }
 } else {
     // Pengguna tidak ditemukan
-    echo "Username atau password salah.";
+    $pesan = "Username atau password salah.";
+    echo '<script>';
+                                                        echo 'alert("'.$pesan.'");';
+                                                        echo 'window.location.href = "index.html";';
+                                                        echo '</script>';
 }
 if (!$result) {
     die("Error in query: " . mysqli_error($conn));
