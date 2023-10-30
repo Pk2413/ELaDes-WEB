@@ -18,6 +18,9 @@ $kode_surat = $_GET['kode_surat'];
 // echo $sql;
 // }
 // }
+function update(){
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -38,24 +41,7 @@ $kode_surat = $_GET['kode_surat'];
     <?php include('navbar/upbar.php') ?>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-
-                        <a class="nav-link" href="dashboard.php" style="margin-top: 50px;">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
-                        </a>
-                        <a class="nav-link" href="suratmasuk.php" style="margin-top: ;">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Surat Masuk
-                        </a>
-                        <a class="nav-link" href="laporan.php" style="margin-top:    ;">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Laporan
-                        </a>
-
-            </nav>
+        <?php include("navbar/lefbar.php");?>
         </div>
 
 
@@ -148,7 +134,44 @@ $kode_surat = $_GET['kode_surat'];
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <p>
+                    <a class="btn btn-warning btn-lg" href="template%20surat/cek.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat);?>" role="button">
+    Preview
+</a>
+<a class="btn btn-primary btn-lg" onclick="printAndClose()" ">
+    Download
+</a>
+
+<script>
+    function printAndClose() {
+        // Ganti URL dengan URL file yang ingin dicetak
+        var fileURL = 'template%20surat/cek.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat);?>';
+        
+        // Buka file di jendela baru
+        var newWindow = window.open(fileURL, '_blank');
+
+        // Tunggu sebentar agar file terbuka
+        setTimeout(function () {
+            newWindow.print();
+            update();
+
+            // Tunggu sebentar sebelum menutup jendela
+            setTimeout(function () {
+                newWindow.close(); // Menutup jendela setelah mencetak
+            }, 1000);
+        }, 0); // Waktu penundaan sebelum mencetak (ms), bisa disesuaikan
+    }
+</script>
+
+
+
+
+</p>
+</div>
+</div>
+
+                
             </main>
         </div>
 

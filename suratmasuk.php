@@ -15,24 +15,7 @@
     <?php include('navbar/upbar.php')?>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            
-                            <a class="nav-link" href="dashboard.php" style="margin-top: 50px;">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
-                            </a>
-                            <a class="nav-link" href="suratmasuk.php" style="margin-top: ;">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Surat Masuk
-                            </a>
-                            <a class="nav-link" href="laporan.php" style="margin-top:    ;">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Laporan
-                            </a>
-                            
-                </nav>
+            <?php include("navbar/lefbar.php");?>
             </div>
 
                         
@@ -75,7 +58,12 @@
 include("koneksi.php");
 
 try {
-    $sql = "SELECT `id`, `nik`, `nama`, `kode_surat`, `tipe_surat`, `tanggal`, `no_pengajuan` FROM pengajuan_surat ";
+    $sql = "SELECT pengajuan_surat.id, pengajuan_surat.nik, pengajuan_surat.nama, pengajuan_surat.kode_surat, pengajuan_surat.tanggal, pengajuan_surat.no_pengajuan 
+    FROM pengajuan_surat
+    JOIN laporan 
+    on pengajuan_surat.id = laporan.id
+    where laporan.status = 'proses'
+    GROUP by id desc;";
     $query = $conn->prepare($sql);
     $query->execute();
 
@@ -83,7 +71,7 @@ try {
     $rowCount = $query->num_rows;
 
     if ($rowCount > 0) {
-        $query->bind_result($id, $nik, $nama, $kode_surat, $tipe_surat, $tanggal,$no_pengajuan);
+        $query->bind_result($id, $nik, $nama, $kode_surat, $tanggal,$no_pengajuan);
 
         while ($query->fetch()) { ?>
             <tr>

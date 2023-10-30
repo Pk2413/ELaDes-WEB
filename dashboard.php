@@ -1,3 +1,7 @@
+<?php
+include ("koneksi.php");
+?>
+
 <!DOCTYPE html>
 <html lang="id">
     <head>
@@ -15,24 +19,7 @@
     <?php include('navbar/upbar.php')?>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            
-                            <a class="nav-link" href="dashboard.php" style="margin-top: 50px;">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
-                            </a>
-                            <a class="nav-link" href="suratmasuk.php" style="margin-top: ;">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Surat Masuk
-                            </a>
-                            <a class="nav-link" href="laporan.php" style="margin-top:    ;">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Laporan
-                            </a>
-                            
-                </nav>
+                <?php include("navbar/lefbar.php");?>
             </div>
 
             <!-- isi konten -->
@@ -45,7 +32,8 @@
                         
                           
                        
-                    </div> 
+                     
+                    
 
 
                     <div class="card mb-4">
@@ -120,8 +108,28 @@ $conn->close();
 </tbody>
                                 </table>
                             </div>
+                            </div>
                         </div>
 
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="margin-top:1%">
+    <a class="dashboard-stat bg-success" href="hasil-pemantauan.php">
+        <?php
+        include ("koneksi.php");
+    
+        $sql = "SELECT COUNT(*) as total FROM laporan where status='proses'"; // Menghitung jumlah data unik dalam kolom StudentId pada tabel hasil_pemantauan
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $totalHasilPemantauan = $row['total'];
+        ?>
+
+        <span class="number counter">
+            <?php echo htmlentities($totalHasilPemantauan); ?>
+        </span>
+        <span class="name">Hasil Pemantauan</span>
+        <span class="bg-icon"><i class="fa fa-file-text"></i></span>
+    </a>
+  
+</div>
                         
                         </div>
                     </div>

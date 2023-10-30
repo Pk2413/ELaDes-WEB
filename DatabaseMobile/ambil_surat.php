@@ -1,7 +1,10 @@
 <?php
-include("Koneksi.php");
+require('Koneksi.php');
 
-$perintah = "SELECT * from surat";
+// Menerima data dari aplikasi Android
+$kode_surat = $_POST['kode_surat']; // 'kode_surat' harus sesuai dengan key yang dikirim dari Android
+
+$perintah = "SHOW COLUMNS FROM `$kode_surat`;";
 $eksekusi = mysqli_query($konek, $perintah);
 $cek = mysqli_num_rows($eksekusi);
 
@@ -12,12 +15,12 @@ if ($cek > 0) {
     $response["pesan"] = "Data Tersedia";
     $response["data"] = array();
 
-    while ($ambil = mysqli_fetch_object($eksekusi)) {
-        $F["kode_surat"] = $ambil->kode_surat;
-        $F["keterangan"] = $ambil->Keterangan;
-        array_push($response["data"], $F);
+    // Mengambil nama kolom
+    while ($row = mysqli_fetch_assoc($eksekusi)) {
+        $response["data"][] = $row['Field'];
     }
 } else {
+    // Data tidak tersedia
     $response["kode"] = 0;
     $response["pesan"] = "Data Tidak Tersedia";
 }
