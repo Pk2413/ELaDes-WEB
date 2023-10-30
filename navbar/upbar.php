@@ -1,9 +1,11 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary" 
+style="height: 80px;">
+    
             <!-- Navbar Brand-->
             
-            <a class="navbar-brand ps-3" href="dashboard.php">
-                <img src="gambar/Logo-Kabupaten-Nganjuk-Warna-removebg-preview 2.png" height="50">
-                Pesudukuh</a>
+            <a class=" ps-4" href="dashboard.php">
+                <img src="gambar/Logo-Kabupaten-Nganjuk-Warna-removebg-preview 2.png" height="50" width="auto">
+                <a class="navbar-brand ps-5" href="#">Pesudukuh</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 jus" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -18,7 +20,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="verkodeotp">Pengaturan</a></li>
+                        <li><a class="dropdown-item" href="verkodeotp">Ganti Password</a></li>
                         <li><hr class="dropdown-divider" /></li>    
                         <li><a class="dropdown-item" href="index.html">Keluar</a></li>
                     </ul>

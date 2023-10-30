@@ -116,7 +116,7 @@ function ubahFormatTanggal($tanggal1) {
             <div class="nomer-surat">
             <p>SURAT KETERANGAN ADAT ISTIADAT</p>
             <p>Nomor :  730 /  ….  / 411.501.03 / 2023.</p>
-        </div>
+            </div>
             <p class="isi-surat1">Kami  Kepala Desa Pesudukuh Kecamatan Bagor Kabupaten Nganjuk menerangkan dengan sebenarnya bahwa   :</p>
             <table>
                 <tr>
@@ -173,12 +173,16 @@ function ubahFormatTanggal($tanggal1) {
                     <td></td>
                     <td >9. Tempat Tinggal</td>
                     <td>:</td>
-                    <td><?php echo $tinggal?>
-                        <br>Kecamatan Bagor Kabupaten Nganjuk</td>
+                    <td><?php echo $tinggal?></td>
+                </tr><tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Kecamatan Bagor Kabupaten Nganjuk</td>
                 </tr>
                 <!-- Tambahkan baris untuk informasi lainnya -->
             </table>
-            <p class="keterangan">Sepanjang pengetahuan kami  orang tersebut diatas selama bertempat tinggal di Desa Pesudukuh,Kecamatan Bagor Kabupaten Nganjuk berkelakuan baik, tidak pernah tersangkut perkara polisi.</p>
+            <p class="keterangan">Sepanjang pengetahuan kami  orang tersebut diatas selama bertempat tinggal di Desa Pesudukuh, Kecamatan Bagor Kabupaten Nganjuk berkelakuan baik, tidak pernah tersangkut perkara polisi.</p>
             <p>Surat keterangan ini berlaku sejak dikeluarkan sampai dengan tanggal<?php echo " ".$tanggal_pengajuan;?> (tiga bulan sejak dikeluarkan)</p>
             <div class="tanda-tangan">
                 <table class="ttd">
