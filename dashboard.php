@@ -20,7 +20,7 @@ $surat_selesai = 0;
 if ($result) {
     // Fetch hasil query sebagai array asosiatif
     while ($row = $result->fetch_assoc()) {
-        if ($row['status'] == 'proses') {
+        if ($row['status'] == 'Proses') {
             $surat_proses = $row['total'];
         } elseif ($row['status'] == 'Selesai') {
             $surat_selesai = $row['total'];
@@ -66,7 +66,7 @@ if ($result) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Dashboard</h1>
+                    <h1 class="" style="margin-top: 50px;">Dashboard</h1>
                     <div class="container-fluid" style="margin-bottom: 30px; margin-top: 30px;">
                         <div class="row gx-5">
                             <div class="col">

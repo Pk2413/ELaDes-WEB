@@ -1,5 +1,5 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary" 
-style="height: 80px;">
+style="height: 80px; ">
     
             <!-- Navbar Brand-->
             

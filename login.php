@@ -30,12 +30,12 @@
                                                 <input class="form-control" id="password" name="password" type="password" placeholder="Password" required/>
                                                 <label for="password">Password</label>
                                             </div>
-                                            <div class="form-check mb-3">
+                                            <!-- <div class="form-check mb-3">
                                                 <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="true" />
                                                 <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
-                                            </div>
+                                            </div> -->
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="verKodeOtp/">Forgot Password?</a>
+                                                <a class="small" href="verKodeOtp/">Lupa Password?</a>
                                                 <input class="btn btn-primary" type="submit" value="Login">
                                             </div>
                                             <?php
@@ -68,8 +68,9 @@
 
 
                                                     if (mysqli_num_rows($result) == 1) {
+                                                        $user = $result->username;
                                                         // Jika pengguna terdaftar, alihkan ke halaman welcome.php atau halaman lain yang sesuai
-                                                        header("location: dashboard.php");
+                                                        header("location: dashboard.php?user=".htmlentities($user));
                                                         // $response = array('status' => 'success', 'message' => 'Login berhasil');
                                                         // echo '<script>';
                                                         // echo 'alert("' . $successMessage . '");';

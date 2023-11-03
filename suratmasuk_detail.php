@@ -48,7 +48,7 @@ function update(){
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Detail Surat Masuk</h1>
+                    <h1 class="" style="margin-top: 50px;">Detail Surat Masuk</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="suratmasuk.php">Surat Masuk</a></li>
                         <li class="breadcrumb-item active">Detail Surat Masuk</li>
@@ -140,7 +140,7 @@ function update(){
     Preview
 </a>
 <a class="btn btn-primary btn-lg" onclick="printAndClose()" ">
-    Download
+    Print
 </a>
 
 <script>
@@ -160,7 +160,7 @@ function update(){
             setTimeout(function () {
                 newWindow.close(); // Menutup jendela setelah mencetak
             }, 1000);
-        }, 0); // Waktu penundaan sebelum mencetak (ms), bisa disesuaikan
+        }, 500); // Waktu penundaan sebelum mencetak (ms), bisa disesuaikan
     }
 </script>
 

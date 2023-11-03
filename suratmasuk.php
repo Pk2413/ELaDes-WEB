@@ -22,7 +22,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Surat Masuk</h1>
+                        <h1 class=""style="margin-top: 50px;">Surat Masuk</h1>
                         <ol class="breadcrumb mb-4">
                             <!-- <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li> -->
                             <li class="breadcrumb-item active">Surat Masuk</li>
