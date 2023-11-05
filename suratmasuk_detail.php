@@ -18,7 +18,8 @@ $kode_surat = $_GET['kode_surat'];
 // echo $sql;
 // }
 // }
-function update(){
+function update()
+{
 
 }
 ?>
@@ -41,23 +42,20 @@ function update(){
     <?php include('navbar/upbar.php') ?>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-        <?php include("navbar/lefbar.php");?>
+            <?php include("navbar/lefbar.php"); ?>
         </div>
 
 
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid">
+                <div class="container-fluid  px-5">
                     <h1 class="" style="margin-top: 50px;">Detail Surat Masuk</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="suratmasuk.php">Surat Masuk</a></li>
                         <li class="breadcrumb-item active">Detail Surat Masuk</li>
                     </ol>
 
-                </div>
 
-
-                <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="panel">
@@ -105,14 +103,14 @@ function update(){
 
 
                                         //membuat tabel HTML
-                                        echo "<table class='table table-striped-columns table-bordered col-md-12' id='datatablesSimple'><tr>";
+                                        echo "<table class='table table-striped-columns table-bordered' id='datatablesSimple'><tr>";
 
                                         //nama kolom
                                         while ($row = $result->fetch_assoc()) {
                                             foreach ($fields as $field) {
                                                 $columnName = $field->name;
                                                 echo "<tr>";
-                                                echo "<td><strong>$columnName</strong></td>";
+                                                echo "<td style='width: 50%;'><strong>$columnName</strong></td>";
                                                 echo "<td>{$row[$columnName]}</td>";
                                                 echo "</tr>";
                                             }
@@ -134,46 +132,34 @@ function update(){
                             </div>
                         </div>
                     </div>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <p>
-                    <a class="btn btn-warning btn-lg" href="template%20surat/cek.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat);?>" role="button">
-    Preview
-</a>
-<a class="btn btn-primary btn-lg" onclick="printAndClose()" ">
-    Print
-</a>
+                    <div class="row gx-5">
+                        <div class="col">
+                            <div>
 
-<script>
-    function printAndClose() {
-        // Ganti URL dengan URL file yang ingin dicetak
-        var fileURL = 'template%20surat/cek.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat);?>';
-        
-        // Buka file di jendela baru
-        var newWindow = window.open(fileURL, '_blank');
+                            </div>
 
-        // Tunggu sebentar agar file terbuka
-        setTimeout(function () {
-            newWindow.print();
-            update();
+                        </div>
+                        <div class="col">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <p>
+                                    <a class="btn btn-warning btn-lg"
+                                        href="template%20surat/cek.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>"
+                                        role="button">
+                                        Preview
+                                    </a>
+                                    <a class="btn btn-primary btn-lg" onclick="printAndClose()">
+                                        Print
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-            // Tunggu sebentar sebelum menutup jendela
-            setTimeout(function () {
-                newWindow.close(); // Menutup jendela setelah mencetak
-            }, 1000);
-        }, 500); // Waktu penundaan sebelum mencetak (ms), bisa disesuaikan
-    }
-</script>
-
-
-
-
-</p>
-</div>
-</div>
-
-                
+                </div>
             </main>
         </div>
+
+
 
 
 
@@ -188,6 +174,27 @@ function update(){
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
             crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+
+        <script>
+            function printAndClose() {
+                // Ganti URL dengan URL file yang ingin dicetak
+                var fileURL = 'template%20surat/cek.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>';
+
+                // Buka file di jendela baru
+                var newWindow = window.open(fileURL, '_blank');
+
+                // Tunggu sebentar agar file terbuka
+                setTimeout(function () {
+                    newWindow.print();
+                    update();
+
+                    // Tunggu sebentar sebelum menutup jendela
+                    setTimeout(function () {
+                        newWindow.close(); // Menutup jendela setelah mencetak
+                    }, 1000);
+                }, 500); // Waktu penundaan sebelum mencetak (ms), bisa disesuaikan
+            }
+        </script>
 </body>
 
 </html>

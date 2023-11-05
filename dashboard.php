@@ -65,7 +65,7 @@ if ($result) {
         <!-- isi konten -->
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
+                <div class="container-fluid px-5">
                     <h1 class="" style="margin-top: 50px;">Dashboard</h1>
                     <div class="container-fluid" style="margin-bottom: 30px; margin-top: 30px;">
                         <div class="row gx-5">

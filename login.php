@@ -82,7 +82,7 @@
                                                         // $response = array('status' => 'error', 'message' => 'Login gagal. Coba lagi.');
                                                         echo '<script>';
                                                         echo 'alert("'.$erorMessage.'");';
-                                                        echo 'window.location.href = "login.php";';
+                                                        // echo 'window.location.href = "login.php";';
                                                         echo '</script>';
 
                                                     }

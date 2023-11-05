@@ -40,7 +40,7 @@
                                                         // $response = array('status' => 'error', 'message' => 'Login gagal. Coba lagi.');
                                                         echo '<script>';
                                                         echo 'alert("'.$erorMessage.'");';
-                                                        echo 'window.location.href = "index.php";';
+                                                        // echo 'window.location.href = "index.php";';
                                                         echo '</script>';
 
                                                     }
@@ -48,4 +48,4 @@
                                                 }
                                                 // header('Content-Type: application/json');
                                                 //     echo json_encode($response);
-                                            ?> -->
+                                            ?> --> 
