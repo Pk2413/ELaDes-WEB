@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2023 at 12:14 PM
+-- Generation Time: Nov 05, 2023 at 12:32 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -34,13 +34,6 @@ CREATE TABLE `akun_admin` (
   `kode_otp` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `akun_admin`
---
-
-INSERT INTO `akun_admin` (`username`, `password`, `email`, `kode_otp`) VALUES
-('admin', 'admin', 'ananda.aa70@gmail.com', 660454);
-
 -- --------------------------------------------------------
 
 --
@@ -56,15 +49,6 @@ CREATE TABLE `akun_user` (
   `created` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `akun_user`
---
-
-INSERT INTO `akun_user` (`username`, `password`, `email`, `nama`, `kode_otp`, `created`) VALUES
-('coba', 'aaaa', 'email', 'coba', 184676, '2023-10-26'),
-('coba1', 'bf0c95ff56e3b2598456cd455a8684', 'ananda.AA70@gmail.com', 'coba', 423509, '2023-11-01'),
-('user', 'user', 'user@email.com', 'Prayoga kusdiana ikhsani ', 793119, '2023-10-26');
-
 -- --------------------------------------------------------
 
 --
@@ -76,17 +60,6 @@ CREATE TABLE `laporan` (
   `tanggal` date NOT NULL DEFAULT current_timestamp(),
   `status` varchar(10) DEFAULT 'Proses'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `laporan`
---
-
-INSERT INTO `laporan` (`id`, `tanggal`, `status`) VALUES
-(27, '2023-10-29', 'Selesai'),
-(28, '2023-11-01', 'Proses'),
-(29, '2023-11-01', 'Proses'),
-(30, '2023-11-01', 'Selesai'),
-(31, '2023-11-01', 'Selesai');
 
 -- --------------------------------------------------------
 
@@ -103,17 +76,6 @@ CREATE TABLE `pengajuan_surat` (
   `username` varchar(20) NOT NULL,
   `no_pengajuan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pengajuan_surat`
---
-
-INSERT INTO `pengajuan_surat` (`id`, `kode_surat`, `nik`, `tanggal`, `nama`, `username`, `no_pengajuan`) VALUES
-(27, 'skck', 2147483647, '2023-10-29', 'Prayoga kusdiana ikhsani ', 'user', 28),
-(28, 'skck', 0, '2023-11-01', '', 'user', 29),
-(29, 'skck', 0, '2023-11-01', '', 'user', 30),
-(30, 'skck', 123456, '2023-11-01', 'coba 1', 'user', 31),
-(31, 'skck', 123456789, '2023-11-01', 'papapapaoapaoaoaoaoaooaoaaooaoaoaoala', 'user', 32);
 
 --
 -- Triggers `pengajuan_surat`
@@ -159,20 +121,6 @@ CREATE TABLE `skck` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `skck`
---
-
-INSERT INTO `skck` (`no_pengajuan`, `kode_surat`, `nama`, `nik`, `tempat_tgl_lahir`, `kebangsaan`, `agama`, `jenis_kelamin`, `status_perkawinan`, `pekerjaan`, `tempat_tinggal`, `username`) VALUES
-(25, 'skck', 'cona', '1923884', 'Nganjuk, 01 Oktober 2023', 'islma', 'amalak', 'Laki-Laki', 'kwjaj', 'ajaj', 'kaak', 'user'),
-(26, 'skck', '2', '2', '2, ', '2', '2', '', '2', '2', '2', 'user'),
-(27, 'skck', '2', '2', '2, ', '2', '2', '', '2', '2', '2', 'user'),
-(28, 'skck', 'Prayoga kusdiana ikhsani ', '081357743268', 'Nganjuk , 01 Oktober 2023', 'WNI', 'islam', 'Laki-Laki', 'Belum Kawin', 'Mahasiswa ', 'Nganjuk', 'user'),
-(29, 'skck', '', '', ', ', '', '', '', '', '', '', 'user'),
-(30, 'skck', '', '', ', ', '', '', '', '', '', '', 'user'),
-(31, 'skck', 'coba 1', '123456', 'nganjk, 05 November 2023', 'haia', 'akaka', 'Perempuan', 'auaia', 'uauaj', 'jajaj', 'user'),
-(32, 'skck', 'papapapaoapaoaoaoaoaooaoaaooaoaoaoala', '123456789', 'nganjuk, 23 November 2023', 'nakaj', 'nakaj', 'Laki-Laki', 'ajajsjsh', 'ajaksja', 'ajajah', 'user');
-
---
 -- Triggers `skck`
 --
 DELIMITER $$
@@ -192,15 +140,6 @@ CREATE TABLE `surat` (
   `kode_surat` varchar(100) NOT NULL,
   `Keterangan` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `surat`
---
-
-INSERT INTO `surat` (`kode_surat`, `Keterangan`) VALUES
-('coba', 'coba'),
-('skck', 'SURAT KETERANGAN ADAT ISTIADAT'),
-('surat_ijin', 'SURAT KETERANGAN  IJIN TIDAK MASUK KERJA');
 
 -- --------------------------------------------------------
 
@@ -227,14 +166,6 @@ CREATE TABLE `surat_ijin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `surat_ijin`
---
-
-INSERT INTO `surat_ijin` (`username`, `no_pengajuan`, `kode_surat`, `Nama`, `NIK`, `Jenis_kelamin`, `Tempat_tanggal_lahir`, `Kewarganegaraan`, `Agama`, `Pekerjaan`, `Alamat`, `Tempat_Kerja`, `Bagian`, `Tanggal`, `Alasan`) VALUES
-('user', 3, 'surat_ijin', '[value-4]', '[value-5]', '[value-6]', '[value-7]', '[value-8]', '[value-9]', '[value-10]', '[value-11]', '[value-12]', '[value-13]', '0000-00-00', '[value-15]'),
-('user', 4, 'surat_ijin', '[value-3]', '[value-5]', '[value-6]', '[value-7]', '[value-8]', '[value-9]', '[value-10]', '[value-11]', '[value-12]', '[value-13]', '0000-00-00', '[value-15]');
-
---
 -- Triggers `surat_ijin`
 --
 DELIMITER $$
@@ -255,17 +186,6 @@ CREATE TABLE `surat_masuk` (
   `kode_surat` varchar(100) NOT NULL,
   `tangal` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `surat_masuk`
---
-
-INSERT INTO `surat_masuk` (`id`, `kode_surat`, `tangal`) VALUES
-(27, 'skck', '2023-10-29'),
-(28, 'skck', '2023-11-01'),
-(29, 'skck', '2023-11-01'),
-(30, 'skck', '2023-11-01'),
-(31, 'skck', '2023-11-01');
 
 --
 -- Indexes for dumped tables
@@ -335,19 +255,19 @@ ALTER TABLE `surat_masuk`
 -- AUTO_INCREMENT for table `pengajuan_surat`
 --
 ALTER TABLE `pengajuan_surat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `skck`
 --
 ALTER TABLE `skck`
-  MODIFY `no_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `no_pengajuan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `surat_ijin`
 --
 ALTER TABLE `surat_ijin`
-  MODIFY `no_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `no_pengajuan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
