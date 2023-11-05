@@ -7,7 +7,7 @@
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -46,7 +46,7 @@ CREATE TABLE `akun_user` (
   `email` varchar(100) NOT NULL,
   `nama` varchar(100) DEFAULT NULL,
   `kode_otp` int(11) NOT NULL,
-  `created` date NOT NULL DEFAULT current_timestamp()
+  `created` date NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
