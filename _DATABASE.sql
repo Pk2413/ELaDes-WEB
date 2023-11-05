@@ -53,7 +53,7 @@ CREATE TABLE `akun_user` (
   `email` varchar(100) NOT NULL,
   `nama` varchar(100) DEFAULT NULL,
   `kode_otp` int(11) NOT NULL,
-  `created` datetime NOT NULL DEFAULT current_timestamp()
+  `created` datetime NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -73,7 +73,7 @@ INSERT INTO `akun_user` (`username`, `password`, `email`, `nama`, `kode_otp`, `c
 
 CREATE TABLE `laporan` (
   `id` int(11) NOT NULL,
-  `tanggal` date NOT NULL DEFAULT current_timestamp(),
+  `tanggal` date NOT NULL ,
   `status` varchar(10) DEFAULT 'Proses'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -98,7 +98,7 @@ CREATE TABLE `pengajuan_surat` (
   `id` int(11) NOT NULL,
   `kode_surat` varchar(100) NOT NULL,
   `nik` int(20) NOT NULL,
-  `tanggal` date NOT NULL DEFAULT current_timestamp(),
+  `tanggal` date NOT NULL ,
   `nama` varchar(100) NOT NULL,
   `username` varchar(20) NOT NULL,
   `no_pengajuan` int(11) NOT NULL
@@ -253,7 +253,7 @@ DELIMITER ;
 CREATE TABLE `surat_masuk` (
   `id` int(11) NOT NULL,
   `kode_surat` varchar(100) NOT NULL,
-  `tangal` date NOT NULL DEFAULT current_timestamp()
+  `tangal` date NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
