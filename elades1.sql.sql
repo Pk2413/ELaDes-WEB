@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2023 at 12:32 PM
+-- Generation Time: Nov 05, 2023 at 12:37 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -77,28 +77,6 @@ CREATE TABLE `pengajuan_surat` (
   `no_pengajuan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Triggers `pengajuan_surat`
---
-DELIMITER $$
-CREATE TRIGGER `DEL_pengajuan_to_suratMasuk` AFTER DELETE ON `pengajuan_surat` FOR EACH ROW DELETE from surat_masuk 
-where id = old.id
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `DEL_to_Laporan` AFTER DELETE ON `pengajuan_surat` FOR EACH ROW DELETE FROM laporan where `id` =  old.id
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `pengajuan_to_suratMasuk` AFTER INSERT ON `pengajuan_surat` FOR EACH ROW INSERT INTO surat_masuk(id,kode_surat) 
-VALUES (new.id, new.kode_surat)
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `to_laporan` AFTER INSERT ON `pengajuan_surat` FOR EACH ROW INSERT INTO laporan(`id`) VALUES (new.id)
-$$
-DELIMITER ;
-
 -- --------------------------------------------------------
 
 --
@@ -119,16 +97,6 @@ CREATE TABLE `skck` (
   `tempat_tinggal` varchar(100) NOT NULL,
   `username` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Triggers `skck`
---
-DELIMITER $$
-CREATE TRIGGER `skck_to_pengajuanSurat` AFTER INSERT ON `skck` FOR EACH ROW INSERT INTO pengajuan_surat(kode_surat,nik, nama,no_pengajuan,username)
-VALUES(new.kode_surat,new.nik,new.nama,new.no_pengajuan
-       ,new.username)
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -164,16 +132,6 @@ CREATE TABLE `surat_ijin` (
   `Tanggal` date NOT NULL,
   `Alasan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Triggers `surat_ijin`
---
-DELIMITER $$
-CREATE TRIGGER `ijin_to_suratmasuk` AFTER INSERT ON `surat_ijin` FOR EACH ROW INSERT INTO pengajuan_surat(kode_surat,nik, nama,no_pengajuan,username)
-VALUES(new.kode_surat,new.nik,new.nama,new.no_pengajuan
-       ,new.username)
-$$
-DELIMITER ;
 
 -- --------------------------------------------------------
 
