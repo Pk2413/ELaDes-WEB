@@ -95,7 +95,7 @@ function update()
                                     // echo $query;
                                     // $result = mysql_query($conn,$query);
                                     $query->execute();
-                                    $result = $query->get_result();
+                                    $result = $query->get_result(); 
 
 
                                     if ($result->num_rows > 0) {
@@ -135,21 +135,21 @@ function update()
                     <div class="row gx-5">
                         <div class="col">
                             <div>
-
+                                <select id="selectOption" class="form-select form-select-lg mb-3" aria-label="Default select example">
+                                    <option value="kepaladesa">Kepala Desa</option>
+                                    <option value="carik">Carik</option>
+                                </select>
                             </div>
-
                         </div>
                         <div class="col">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <p>
-                                    <a class="btn btn-warning btn-lg"
-                                        href="template%20surat/cek.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>"
-                                        role="button">
+                                    <button class="btn btn-warning btn-lg" onclick="previewDocument()">
                                         Preview
-                                    </a>
-                                    <a class="btn btn-primary btn-lg" onclick="printAndClose()">
+                                    </button>
+                                    <button class="btn btn-primary btn-lg" onclick="printAndClose()">
                                         Print
-                                    </a>
+                                    </button>
                                 </p>
                             </div>
                         </div>
@@ -176,9 +176,27 @@ function update()
         <script src="js/datatables-simple-demo.js"></script>
 
         <script>
+            function previewDocument() {
+                var selectedOption = document.getElementById("selectOption").value;
+                var no_pengajuan = "<?php echo htmlentities($no_pengajuan); ?>";
+                var kode_surat = "<?php echo htmlentities($kode_surat); ?>";
+
+                // Check if values are not empty before redirecting
+                if (no_pengajuan && kode_surat) {
+                    var url = "template%20surat/cek.php?no_pengajuan=" + encodeURIComponent(no_pengajuan) + "&kode_surat=" + encodeURIComponent(kode_surat) + "&ttd=" + encodeURIComponent(selectedOption)+ "&print=" +false;
+                    window.location.href = url;
+                } else {
+                    alert("Error: Values not set.");
+                }
+            }
+
+
             function printAndClose() {
+                var selectedOption = document.getElementById("selectOption").value;
+                var no_pengajuan = "<?php echo htmlentities($no_pengajuan); ?>";
+                var kode_surat = "<?php echo htmlentities($kode_surat); ?>";
                 // Ganti URL dengan URL file yang ingin dicetak
-                var fileURL = 'template%20surat/cek.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>';
+                var fileURL = "template%20surat/cek.php?no_pengajuan=" + encodeURIComponent(no_pengajuan) + "&kode_surat=" + encodeURIComponent(kode_surat) + "&ttd=" + encodeURIComponent(selectedOption) + "&print=" + true;
 
                 // Buka file di jendela baru
                 var newWindow = window.open(fileURL, '_blank');

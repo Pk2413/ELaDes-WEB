@@ -1,5 +1,7 @@
 <?php
 require("../Koneksi.php");
+require ("../sender/phpmailer.php");
+require ('../vendor/autoload.php'); 
 
 // Menerima data dari aplikasi Android
 $username = $_POST['username']; // 'email' harus sesuai dengan key yang dikirim dari Android
@@ -15,13 +17,22 @@ $cek = mysqli_num_rows($eksekusi);
 $response = array();
 
 if ($cek = 0) {
+   
     $response["kode"]=0;
     $response["pesan"] = "Username tidak tercantum";
 
     } else {
+        $data = mysqli_fetch_assoc($eksekusi);
+        $email = $data['email'];
+        $type = "Register";
+        $mail = new EmailSender();
+        $mail->sendEmail($email, $type, $kode_otp);
+        
         // jika username belum terdaftar, lakukan proses registrasi
         $perintah = "UPDATE `akun_user` SET `kode_otp` = '$kode_otp' Where username = '$username'";
         $eksekusi = mysqli_query($konek, $perintah);
+
+        
 
 
         // $F["username"] = $username;

@@ -1,5 +1,7 @@
 <?php
 require("../Koneksi.php");
+require ("../sender/phpmailer.php");
+require ('../vendor/autoload.php'); 
 
 // Menerima data dari aplikasi Android
 $username = $_POST['username']; // 'email' harus sesuai dengan key yang dikirim dari Android
@@ -18,13 +20,23 @@ $response = array();
 
 if ($cek > 0) {
     $response["kode"]=0;
-    $response["peasn"] = "email sudah terdaftar";
+    $response["pesan"] = "email sudah terdaftar";
+
+    $data = mysqli_fetch_assoc($eksekusi);
+    
+   
 
     } else {
+        $type="Register";
+        $mail = new EmailSender();
+        $mail->sendEmail($email, $type, $kode_otp);
+        
         // jika username belum terdaftar, lakukan proses registrasi
         $perintah = "INSERT INTO `akun_user`(`username`, `email`, `nama`, `kode_otp`) 
         VALUES ('$username','$email','$nama','$kode_otp')";
         $eksekusi = mysqli_query($konek, $perintah);
+
+        
 
 
         // $F["username"] = $username;

@@ -60,12 +60,13 @@
                                     include("koneksi.php");
 
                                     try {
-                                        $sql = "SELECT pengajuan_surat.id, pengajuan_surat.nik, pengajuan_surat.nama, pengajuan_surat.kode_surat, pengajuan_surat.tanggal, pengajuan_surat.no_pengajuan 
-                                                FROM pengajuan_surat
-                                                JOIN laporan 
-                                                on pengajuan_surat.id = laporan.id
-                                                where laporan.status = 'proses'
-                                                GROUP by id desc;";
+                                        $sql = "SELECT pengajuan_surat.id as id, pengajuan_surat.nik, pengajuan_surat.nama, pengajuan_surat.kode_surat, pengajuan_surat.tanggal, pengajuan_surat.no_pengajuan
+                                        FROM pengajuan_surat
+                                        JOIN laporan
+                                        on pengajuan_surat.id = laporan.id
+                                        where laporan.status = 'Proses'
+                                        GROUP by id  
+                                        ORDER BY `pengajuan_surat`.`id` DESC";
                                         $query = $conn->prepare($sql);
                                         $query->execute();
 
@@ -84,8 +85,7 @@
                                                         <?php echo htmlentities($nik); ?>
                                                     </td>
 
-                                                    <td><a
-                                                            href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>">
+                                                    <td><a href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>&id=<?php echo htmlentities($id) ?>">
                                                             <?php echo htmlentities($nama); ?>
                                                         </a>
                                                     </td>
@@ -100,11 +100,15 @@
                                                     </td>
                                                     <td class="">
                                                         <a class="btn btn-primary" role="button"
-                                                            href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($id); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>">
+                                                            href="suratmasuk_detail.php?no_pengajuan=<?php echo urlencode(trim($no_pengajuan)); ?>&kode_surat=<?php echo urlencode(trim(htmlentities($kode_surat))); ?>&id=<?php echo urlencode(trim(htmlentities($id))); ?>">
                                                             Detail
                                                         </a>
+
+
+
                                                         <a class="btn btn-danger" role="button"
-                                                            href="utility/delete_pengajuan_surat.php?id=<?php echo htmlentities($id); ?>" onclick="
+                                                            href="utility/delete_pengajuan_surat.php?id=<?php echo htmlentities($id); ?>"
+                                                            onclick="
                                                             return confirm('Apakah anda ingin menghapus surat?')
                                                             ">
                                                             Hapus
@@ -136,7 +140,7 @@
                 "scrollX": true, // Menambahkan fungsi gulir horizontal
                 "columns": [
                     { "searchable": false }, // Kolom ID
-                    { "searchable": true }, // Kolom NIK
+                    { "searchable": false }, // Kolom NIK
                     { "searchable": true }, // Kolom Nama Lengkap
                     { "searchable": true }, // Kolom Tipe surat
                     { "searchable": false }, // Kolom Tanggal Laporan

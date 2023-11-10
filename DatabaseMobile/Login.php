@@ -4,7 +4,7 @@ require('Koneksi.php');
 // Menerima data dari aplikasi Android
 $username = $_POST['username']; // 'username' harus sesuai dengan key yang dikirim dari Android
 $password = $_POST['password'];
-// $hashedPassword = md5($password); // 'password' harus sesuai dengan key yang dikirim dari Android
+$hashedPassword = md5($password); // 'password' harus sesuai dengan key yang dikirim dari Android
 
 $perintah = "SELECT * FROM `akun_user` WHERE username = '$username'";
 $eksekusi = mysqli_query($konek, $perintah);
@@ -16,7 +16,7 @@ if ($cek > 0) {
     $ambil = mysqli_fetch_object($eksekusi);
     $password_db = $ambil->password;
 
-    if ($password == $password_db) {
+    if ($hashedPassword == $password_db) {
         // Password benar
         $response["kode"] = 1;
         $response["pesan"] = "Data Tersedia";

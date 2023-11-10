@@ -100,7 +100,7 @@
                                                     </td>
                                                     <td style="text-align: center;">
                                                         <a class="btn btn-primary" role="button"
-                                                            href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($id); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>">
+                                                            href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>">
                                                             Detail
                                                         </a>
                                                         <a class="btn btn-danger" role="button"

@@ -1,8 +1,8 @@
 <?php
+require("../Koneksi.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
-    $no_pengajuan = $_POST['no_pengajuan'];
     $Nama = $_POST['Nama'];
     $NIK = $_POST['NIK'];
     $Jenis_kelamin = $_POST['Jenis_kelamin'];
@@ -16,12 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $Tanggal = $_POST['Tanggal'];
     $Alasan = $_POST['Alasan'];
 
-    require("../koneksi.php");
+    
 
     // SQL query
-    $sql = "INSERT INTO `surat_ijin`(`username`, `no_pengajuan`, `Nama`, `NIK`, `Jenis_kelamin`, `Tempat_tanggal_lahir`,
-     `Kewarganegaraan`, `Agama`, `Pekerjaan`, `Alamat`, `Tempat_Kerja`, `Bagian`, `Tanggal`, `Alasan`) 
-            VALUES ('$username', '$no_pengajuan', '$Nama', '$NIK', '$Jenis_kelamin', '$Tempat_tanggal_lahir',
+    $sql = "INSERT INTO `surat_ijin`(`username`, `Nama`, `NIK`, `Jenis_kelamin`, `Tempat_tanggal_lahir`,
+     `Kewarganegaraan`, `Agama`, `Pekerjaan`, `Alamat`, `Tempat_Kerja`, `Bagian`, `Tanggal`, `Alasan`)
+            VALUES ('$username', '$Nama', '$NIK', '$Jenis_kelamin', '$Tempat_tanggal_lahir',
              '$Kewarganegaraan', '$Agama', '$Pekerjaan', '$Alamat', '$Tempat_Kerja', '$Bagian', '$Tanggal', '$Alasan')";
 
     $eksekusi = mysqli_query($konek, $sql);
