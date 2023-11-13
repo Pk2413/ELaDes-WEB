@@ -22,10 +22,12 @@
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header">
-                                    <h3 class="text-center font-weight-light my-4">Login</h3>
+                                    <img src="gambar/Logo-Kabupaten-Nganjuk-Warna-removebg-preview 2.png" class="mx-auto d-block" alt="Logo" style="width: 30%;" >
+                                    <h3 class="text-center font-weight-light ">Login</h3>
+                                    
                                 </div>
                                 <div class="card-body">
-                                    <form method="POST">
+                                    <form method="POST" name="login">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="username" name="username" type="text"
                                                 placeholder="Username" required />
@@ -45,42 +47,8 @@
                                             <input class="btn btn-primary" type="submit" value="Login">
                                         </div>
                                         <?php
-                                        include("koneksi.php");
-
-                                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                                            $username = $_POST["username"];
-                                            $password = $_POST["password"];
-
-                                            // Mengenkripsi password yang diinputkan menggunakan MD5
-                                            $password_md5 = md5($password);
-
-                                            $berhasil = "Berhasil Login";
-
-                                            $successMessage = "Login successful";
-                                            $errorMessage = "Login failed. Please try again.";
-
-                                            // Menggunakan parameterized query untuk menghindari SQL injection
-                                            $query = "SELECT * FROM akun_admin WHERE username = ? AND password = ?";
-                                            $stmt = mysqli_prepare($conn, $query);
-                                            mysqli_stmt_bind_param($stmt, "ss", $username, $password_md5);
-                                            mysqli_stmt_execute($stmt);
-                                            $result = mysqli_stmt_get_result($stmt);
-
-                                            if (mysqli_num_rows($result) == 1) {
-                                                $user = $result->username;
-
-                                                // Jika pengguna terdaftar, alihkan ke halaman welcome.php atau halaman lain yang sesuai
-                                                header("location: dashboard.php?user=" . htmlentities($user));
-                                                exit();
-                                            } else {
-                                                // Jika login gagal, tampilkan pesan kesalahan
-                                                echo '<script>';
-                                                echo 'alert("' . $errorMessage . '");';
-                                                echo '</script>';
-                                            }
-                                        }
+                                        require 'login_proses.php';
                                         ?>
-
                                     </form>
                                 </div>
                             </div>

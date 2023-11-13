@@ -1,51 +1,38 @@
-<!-- <?php
-// Sisipkan file koneksi.php untuk menghubungkan ke database
-require("koneksi.php");
-include("login.php");
+<?php
+include("koneksi.php");
+// include "login.php";
 
-// Ambil nilai yang dimasukkan oleh pengguna
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
+    // Mengenkripsi password yang diinputkan menggunakan MD5
+    $password_md5 = md5($password);
+
     $berhasil = "Berhasil Login";
 
     $successMessage = "Login successful";
-    $erorMessage = "Login failed. Please try again.";
+    $errorMessage = "Login failed. Please try again.";
 
-
-    // Query SQL untuk memeriksa apakah pengguna terdaftar di tabel admin
-    $query = "SELECT * FROM akun_admin WHERE username = '$username' AND password = '$password'";
-    echo $query;
-
-    // $result = $conn->query($query);
+    // Menggunakan parameterized query untuk menghindari SQL injection
     $query = "SELECT * FROM akun_admin WHERE username = ? AND password = ?";
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+    mysqli_stmt_bind_param($stmt, "ss", $username, $password_md5);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
-
     if (mysqli_num_rows($result) == 1) {
+        $user = $result->username;
+
         // Jika pengguna terdaftar, alihkan ke halaman welcome.php atau halaman lain yang sesuai
-        header("location: dashboard.php");
-        // $response = array('status' => 'success', 'message' => 'Login berhasil');
-        echo '<script>';
-        echo 'alert("' . $successMessage . '");';
-        echo 'window.location.href = "Dashboard.php";';
-        echo '</script>';
+        header("location: dashboard.php?user=" . htmlentities($user));
         exit();
     } else {
-        header("location: login.php");
-        // $response = array('status' => 'error', 'message' => 'Login gagal. Coba lagi.');
+        // Jika login gagal, tampilkan pesan kesalahan
         echo '<script>';
-        echo 'alert("' . $erorMessage . '");';
-        // echo 'window.location.href = "index.php";';
+        echo 'alert("' . $errorMessage . '");';
         echo '</script>';
-
     }
-
 }
-// header('Content-Type: application/json');
-//     echo json_encode($response);
-?> -->
+?>

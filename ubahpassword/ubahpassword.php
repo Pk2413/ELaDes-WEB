@@ -1,5 +1,5 @@
 <?php
-include "../ubahpassword/index.html";
+include "index.html";
 include "../koneksi.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

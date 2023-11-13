@@ -1,45 +1,57 @@
 <?php
-include 'koneksi.php';
-$id         = $_GET['username'];
-$akun  = mysqli_query($koneksi, "select * from akun_admin where id_mahasiswa='$id'");
-$row        = mysqli_fetch_array($akun);
-?>
+require("../DatabaseMobile/Koneksi.php");
+require ("../DatabaseMobile/sender/phpmailer.php");
+require ('../DatabaseMobile/vendor/autoload.php'); 
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
-<body>
-        <form method="post" action="update.php">
-            <input type="hidden" value="<?php echo $row['id_mahasiswa'];?>" name="id_mahasiswa">
-            <table>
-                <tr><td>NIM</td><td><input type="text" value="<?php echo $row['nim'];?>" name="nim"></td></tr>
-                <tr><td>NAMA</td><td><input type="text" value="<?php echo $row['nama'];?>" name="nama"></td></tr>
-                <tr><td>JENIS KELAMIN</td><td>
-                        <input type="radio" name="jenis_kelamin" value="L" <?php echo active_radio_button("L", $row['jenis_kelamin'])?>>Laki Laki
-                        <input type="radio" name="jenis_kelamin" value="P" <?php echo active_radio_button("P", $row['jenis_kelamin'])?>>Perempuan
-                    </td></tr>
-                <tr><td>JURUSAN <?php echo $row['jurusan'];?></td><td>
-                        <select name="jurusan">
-                            <?php
-                            foreach ($jurusan as $j){
-                                echo "<option value='$j' ";
-                                echo $row['jurusan']==$j?'selected="selected"':'';
-                                echo ">$j</option>";
-                            }
-                            ?>
-                        </select>
-                    </td></tr>
-                <tr><td>ALAMAT</td><td><input value="<?php echo $row['alamat'];?>" type="text" name="alamat"></td></tr>
-                <tr><td colspan="2"><button type="submit" value="simpan">SIMPAN PERUBAHAN</button>
-                        <a href="index.php">Kembali</a></td></tr>
-            </table>
-        </form>
-    </body>
+// Menerima data dari aplikasi Android
+// $username = $_POST['username']; // 'email' harus sesuai dengan key yang dikirim dari Android
+$kode_otp = mt_rand(100000, 999999);
+
+
+
+// periksa  apakah email sudah terdaftar 
+$perintah = "SELECT * FROM `akun_admin` WHERE 1";
+$eksekusi = mysqli_query($konek, $perintah);
+$cek = mysqli_num_rows($eksekusi);
+
+$response = array();
+
+if ($cek = 0) {
+   
+    $response["kode"]=0;
+    $response["pesan"] = "Username tidak tercantum";
+
+    } else {
+        $data = mysqli_fetch_assoc($eksekusi);
+        $email = $data['email'];
+        $username = $data['username'];
+        $type = "Lupa Password";
+        echo $username."\n".$email."\n";
+        echo $kode_otp;
+        $mail = new EmailSender();
+        $mail->sendEmail($email, $type, $kode_otp);
+        
+        // jika username belum terdaftar, lakukan proses registrasi
+        $perintah = "UPDATE `akun_admin` SET `kode_otp` = '$kode_otp' Where username = '$username'";
+        $eksekusi = mysqli_query($konek, $perintah);
+
+        
+
+
+        // $F["username"] = $username;
+        // array_push($response["data"], $F);
+
+        if($eksekusi){
+            $response["kode"] =1;
+            $response["pesan"] = "kode otp berhasil diupdate";
+            header("Location: ../ubahpassword/"); 
+        }else {
+            $response["kode"]= 2;
+            $response["pesan"] = "koed otp gagal diupdate";
+        }
+    }
+
+
+echo json_encode($response);
+mysqli_close($konek);
+?>
