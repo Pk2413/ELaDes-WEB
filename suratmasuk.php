@@ -1,3 +1,7 @@
+<?php
+include 'utility/sesionlogin.php';
+
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -7,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Surat Masuk</title>
+    <title>Pengajuan Surat</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -24,10 +28,10 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-5">
-                    <h1 class="" style="margin-top: 50px;">Surat Masuk</h1>
+                    <h1 class="" style="margin-top: 50px;">Pengajuan Surat</h1>
                     <ol class="breadcrumb mb-4">
                         <!-- <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li> -->
-                        <li class="breadcrumb-item active">Surat Masuk</li>
+                        <li class="breadcrumb-item active">Pengajuan Surat</li>
                     </ol>
 
                     <div class="card mb-4 px-4">
@@ -64,7 +68,7 @@
                                         FROM pengajuan_surat
                                         JOIN laporan
                                         on pengajuan_surat.id = laporan.id
-                                        where laporan.status = 'Proses'
+                                        where laporan.status = 'Masuk' or laporan.status ='Proses'
                                         GROUP by id  
                                         ORDER BY `pengajuan_surat`.`id` DESC";
                                         $query = $conn->prepare($sql);
@@ -85,7 +89,7 @@
                                                         <?php echo htmlentities($nik); ?>
                                                     </td>
 
-                                                    <td><a href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>&id=<?php echo htmlentities($id) ?>">
+                                                    <td><a href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>&id=<?php echo htmlentities($id) ?>&user=<?php echo htmlentities($user)?>">
                                                             <?php echo htmlentities($nama); ?>
                                                         </a>
                                                     </td>
@@ -100,18 +104,18 @@
                                                     </td>
                                                     <td class="">
                                                         <a class="btn btn-primary" role="button"
-                                                            href="suratmasuk_detail.php?no_pengajuan=<?php echo urlencode(trim($no_pengajuan)); ?>&kode_surat=<?php echo urlencode(trim(htmlentities($kode_surat))); ?>&id=<?php echo urlencode(trim(htmlentities($id))); ?>">
+                                                            href="suratmasuk_detail.php?no_pengajuan=<?php echo urlencode(trim($no_pengajuan)); ?>&kode_surat=<?php echo urlencode(trim(htmlentities($kode_surat))); ?>&id=<?php echo urlencode(trim(htmlentities($id))); ?>&user=<?php echo htmlentities($user)?>">
                                                             Detail
                                                         </a>
 
 
 
                                                         <a class="btn btn-danger" role="button"
-                                                            href="utility/delete_pengajuan_surat.php?id=<?php echo htmlentities($id); ?>"
+                                                            href="utility/proses_tolak.php?id=<?php echo htmlentities($id); ?>"
                                                             onclick="
-                                                            return confirm('Apakah anda ingin menghapus surat?')
+                                                            return confirm('Apakah anda yakin akan menolak surat?')
                                                             ">
-                                                            Hapus
+                                                            Tolak
                                                         </a>
                                                     </td>
                                                 </tr>

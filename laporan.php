@@ -1,3 +1,6 @@
+<?php
+include 'utility/sesionlogin.php';  
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -60,11 +63,12 @@
                                     include("koneksi.php");
 
                                     try {
-                                        $sql = "SELECT laporan.id,  pengajuan_surat.nik, pengajuan_surat.nama,pengajuan_surat.kode_surat, pengajuan_surat.no_pengajuan, laporan.status 
-     FROM `laporan`
-    join pengajuan_surat
-    on pengajuan_surat.id = laporan.id
-    GROUP by id desc;";
+                                        $sql = "SELECT laporan.id,  pengajuan_surat.nik, pengajuan_surat.nama,pengajuan_surat.kode_surat,
+                                                pengajuan_surat.no_pengajuan, laporan.status 
+                                                FROM `laporan`
+                                                join pengajuan_surat
+                                                on pengajuan_surat.id = laporan.id
+                                                GROUP by id desc;";
                                         $query = $conn->prepare($sql);
                                         $query->execute();
 
@@ -85,8 +89,7 @@
                                                         <?php echo htmlentities($nik); ?>
                                                     </td>
                                                     <td><a
-                                                            href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>">
-                                                            <?php echo htmlentities($nama); ?>
+                                                            href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>&user=<?php echo htmlentities($user)?>">
                                                         </a>
                                                     </td>
                                                     <td>
@@ -100,7 +103,7 @@
                                                     </td>
                                                     <td style="text-align: center;">
                                                         <a class="btn btn-primary" role="button"
-                                                            href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>">
+                                                            href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>&user=<?php echo htmlentities($user)?>">
                                                             Detail
                                                         </a>
                                                         <a class="btn btn-danger" role="button"

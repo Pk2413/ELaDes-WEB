@@ -1,23 +1,10 @@
 <?php
-// session_start();
-// error_reporting(0);
-include('koneksi.php');
+include 'utility/sesionlogin.php';
 
-// if (strlen($_SESSION['alogin']) == "") {
-//     header("Location: index.php");
-// } else {
-// if (isset($_GET['id'])) {
 $no_pengajuan = $_GET['no_pengajuan'];
 $kode_surat = $_GET['kode_surat'];
-// $sql = $conn->prepare("SELECT * FROM pengajuan_surat WHERE id = ? and kode_surat 
-// = ?");
-// $query = $dbh->prepare($sql);
-// $query->bindParam('ss', $id, $kode_surat);
-// $query->execute();
-// $result = $query->fetch(PDO::FETCH_OBJ);
-// echo $sql;
-// }
-// }
+
+
 function update()
 {
 
@@ -32,7 +19,7 @@ function update()
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Detail Surat Masuk</title>
+    <title>Detail Pengajuan Surat</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -49,10 +36,10 @@ function update()
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid  px-5">
-                    <h1 class="" style="margin-top: 50px;">Detail Surat Masuk</h1>
+                    <h1 class="" style="margin-top: 50px;">Detail Pengajuan Surat</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="suratmasuk.php">Surat Masuk</a></li>
-                        <li class="breadcrumb-item active">Detail Surat Masuk</li>
+                        <li class="breadcrumb-item"><a href="suratmasuk.php">Pengajuan Surat</a></li>
+                        <li class="breadcrumb-item active">Detail Pengajuan Surat</li>
                     </ol>
 
 
@@ -64,7 +51,7 @@ function update()
                                     <div class="col-md-7">
                                         <h3>
                                             <?php
-                                            include("koneksi.php");
+                                            // include("koneksi.php");
 
                                             $query = "SELECT keterangan FROM surat where kode_surat ='$kode_surat'";
                                             $result = $conn->query($query);

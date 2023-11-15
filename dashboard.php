@@ -1,5 +1,6 @@
 <?php
-include("koneksi.php");
+include 'utility/sesionlogin.php';
+// include("koneksi.php");
 
 $sql = "SELECT
     status,
