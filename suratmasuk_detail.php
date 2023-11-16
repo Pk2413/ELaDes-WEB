@@ -3,6 +3,15 @@ include 'utility/sesionlogin.php';
 
 $no_pengajuan = $_GET['no_pengajuan'];
 $kode_surat = $_GET['kode_surat'];
+$id = $_GET['id'];
+
+$query = "update laporan set status = 'Proses' where id = ? ";
+$stmt = mysqli_prepare($conn, $query);
+mysqli_stmt_bind_param($stmt, "s", $id);
+mysqli_stmt_execute($stmt);
+
+
+
 
 
 function update()
@@ -60,7 +69,7 @@ function update()
                                                 $row = $result->fetch_assoc();
                                                 $data = $row['keterangan'];
                                             } else {
-                                                $data = ""; // Atau sesuaikan dengan nilai default jika tidak ada data
+                                                $data = "Surat Tidak Ada"; // Atau sesuaikan dengan nilai default jika tidak ada data
                                             }
 
                                             echo $data;

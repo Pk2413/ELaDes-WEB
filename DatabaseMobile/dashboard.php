@@ -6,7 +6,9 @@ $user = $_POST['username'];
 
 $sql= "SELECT 
 sum( case when  laporan.status = 'Proses' then 1 else 0 end) as Proses,
-sum(case when laporan.status = 'Selesai' then 1 else 0 end ) as Selesai
+sum(case when laporan.status = 'Selesai' then 1 else 0 end ) as Selesai,
+sum(case when laporan.status = 'Masuk' then 1 else 0 end ) as Masuk,
+sum(case when laporan.status = 'Tolak' then 1 else 0 end ) as Tolak
 FROM `laporan`
 inner join pengajuan_surat
 ON laporan.id = pengajuan_surat.id
@@ -24,6 +26,8 @@ if ($eksekusi) {
     $response["data"] = array();
     $data["Proses"] = $ambil->Proses;
     $data["Selesai"] = $ambil->Selesai;
+    $data["Masuk"] = $ambil->Masuk;
+    $data["Tolak"] = $ambil->Tolak;
     array_push($response["data"], $data);
 } else {
     // Jika insert gagal

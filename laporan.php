@@ -63,7 +63,7 @@ include 'utility/sesionlogin.php';
                                     include("koneksi.php");
 
                                     try {
-                                        $sql = "SELECT laporan.id,  pengajuan_surat.nik, pengajuan_surat.nama,pengajuan_surat.kode_surat,
+                                        $sql = "SELECT laporan.id,  pengajuan_surat.nik, pengajuan_surat.nama ,pengajuan_surat.kode_surat,
                                                 pengajuan_surat.no_pengajuan, laporan.status 
                                                 FROM `laporan`
                                                 join pengajuan_surat
@@ -88,8 +88,10 @@ include 'utility/sesionlogin.php';
                                                     <td>
                                                         <?php echo htmlentities($nik); ?>
                                                     </td>
-                                                    <td><a
+                                                    <td>
+                                                        <a
                                                             href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>&user=<?php echo htmlentities($user)?>">
+                                                            <?php echo htmlentities($nama); ?> 
                                                         </a>
                                                     </td>
                                                     <td>
@@ -106,12 +108,12 @@ include 'utility/sesionlogin.php';
                                                             href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>&user=<?php echo htmlentities($user)?>">
                                                             Detail
                                                         </a>
-                                                        <a class="btn btn-danger" role="button"
+                                                        <!-- <a class="btn btn-danger" role="button"
                                                             href="utility/delete_pengajuan_surat.php?id=<?php echo htmlentities($id); ?>"
                                                             onclick="
                                                             return confirm('Apakah anda ingin menghapus surat?')">
                                                             Hapus
-                                                        </a>
+                                                        </a> -->
                                                     </td>
                                                 </tr>
                                                 <?php

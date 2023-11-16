@@ -1,12 +1,14 @@
 <?php
 include("../Koneksi.php");
 
+$username = $_POST['username'];
+
 $perintah = "SELECT pengajuan_surat.id, pengajuan_surat.kode_surat, pengajuan_surat.nik,pengajuan_surat.nama, pengajuan_surat.no_pengajuan, laporan.tanggal, laporan.status
 FROM `laporan` 
 INNER JOIN pengajuan_surat
 ON pengajuan_surat.id = laporan.id
-WHERE laporan.status = 'Selesai'
-GROUP by pengajuan_surat.id 
+WHERE (laporan.status = 'Selesai'or laporan.status = 'Tolak') and pengajuan_surat.username ='$username' 
+GROUP by pengajuan_surat.id
 order by pengajuan_surat.tanggal desc;";
 $eksekusi = mysqli_query($konek, $perintah);
 $cek = mysqli_num_rows($eksekusi);

@@ -89,7 +89,8 @@ include 'utility/sesionlogin.php';
                                                         <?php echo htmlentities($nik); ?>
                                                     </td>
 
-                                                    <td><a href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>&id=<?php echo htmlentities($id) ?>&user=<?php echo htmlentities($user)?>">
+                                                    <td><a
+                                                            href="suratmasuk_detail.php?no_pengajuan=<?php echo htmlentities($no_pengajuan); ?>&kode_surat=<?php echo htmlentities($kode_surat); ?>&id=<?php echo htmlentities($id) ?>&user=<?php echo htmlentities($user) ?>">
                                                             <?php echo htmlentities($nama); ?>
                                                         </a>
                                                     </td>
@@ -104,7 +105,7 @@ include 'utility/sesionlogin.php';
                                                     </td>
                                                     <td class="">
                                                         <a class="btn btn-primary" role="button"
-                                                            href="suratmasuk_detail.php?no_pengajuan=<?php echo urlencode(trim($no_pengajuan)); ?>&kode_surat=<?php echo urlencode(trim(htmlentities($kode_surat))); ?>&id=<?php echo urlencode(trim(htmlentities($id))); ?>&user=<?php echo htmlentities($user)?>">
+                                                            href="suratmasuk_detail.php?no_pengajuan=<?php echo urlencode(trim($no_pengajuan)); ?>&kode_surat=<?php echo urlencode(trim(htmlentities($kode_surat))); ?>&id=<?php echo urlencode(trim(htmlentities($id))); ?>&user=<?php echo htmlentities($user) ?>">
                                                             Detail
                                                         </a>
 
@@ -153,10 +154,10 @@ include 'utility/sesionlogin.php';
                 ]
             });
 
-            // Tambahkan fungsi pencarian
-            $('#datatablesSimple_filter input').unbind().bind('keyup', function () {
-                table.search(this.value).draw();
-            });
+            // // Tambahkan fungsi pencarian
+            // $('#datatablesSimple_filter input').unbind().bind('keyup', function () {
+            //     table.search(this.value).draw();
+            // });
         });
     </script>
 
