@@ -99,7 +99,7 @@ $sql = "UPDATE `sktm` SET
         `tempat_tanggal_lahir_anak`='$Tempattanggallahiranak',
         `jenis_kelamin_anak`='$jeniskelaminanak',
         `alamat_anak`='$alamatanak'
-        WHERE `no_pengajuan`='$no_pengajuan'";
+        WHERE `no_pengajuan`='$no'";
 $eksekusi = mysqli_query($konek, $sql);
 
 $response = array();
