@@ -7,7 +7,7 @@ $perintah = "SELECT pengajuan_surat.id, pengajuan_surat.kode_surat, pengajuan_su
 FROM `laporan` 
 INNER JOIN pengajuan_surat
 ON pengajuan_surat.id = laporan.id
-WHERE (laporan.status = 'Proses'or laporan.status = 'Masuk') and pengajuan_surat.username ='$username' 
+WHERE  laporan.status = 'Masuk' and pengajuan_surat.username ='$username' 
 GROUP by pengajuan_surat.id
 order by pengajuan_surat.tanggal desc;";
 $eksekusi = mysqli_query($konek, $perintah);

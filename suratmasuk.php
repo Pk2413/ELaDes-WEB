@@ -108,14 +108,8 @@ include 'utility/sesionlogin.php';
                                                             href="suratmasuk_detail.php?no_pengajuan=<?php echo urlencode(trim($no_pengajuan)); ?>&kode_surat=<?php echo urlencode(trim(htmlentities($kode_surat))); ?>&id=<?php echo urlencode(trim(htmlentities($id))); ?>&user=<?php echo htmlentities($user) ?>">
                                                             Detail
                                                         </a>
-
-
-
-                                                        <a class="btn btn-danger" role="button"
-                                                            href="utility/proses_tolak.php?id=<?php echo htmlentities($id); ?>"
-                                                            onclick="
-                                                            return confirm('Apakah anda yakin akan menolak surat?')
-                                                            ">
+                                                        <a class="btn btn-danger" role="button" href="#" data-bs-toggle="modal"
+                                                            data-bs-target="#confirmationModal">
                                                             Tolak
                                                         </a>
                                                     </td>
@@ -138,27 +132,48 @@ include 'utility/sesionlogin.php';
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Konfirmasi Tolak</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin akan menolak surat?</p>
+                    <form action="utility/proses_tolak.php" method="post">
+                        <!-- Tambahkan input tersembunyi untuk mengirimkan ID atau data lain yang diperlukan -->
+                        <input type="hidden" id="id" name="id" value="<?php echo htmlentities($id); ?>">
+
+                        <!-- Input untuk alasan -->
+                        <div class="mb-3">
+                            <label for="alasan" class="form-label">Alasan:</label>
+                            <textarea class="form-control" id="alasan" name="alasan" rows="4" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-danger">Ya, Tolak</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         $(document).ready(function () {
-            // Inisialisasi DataTables dengan konfigurasi kolom pencarian
-            var table = $('#datatablesSimple').DataTable({
-                "scrollX": true, // Menambahkan fungsi gulir horizontal
-                "columns": [
-                    { "searchable": false }, // Kolom ID
-                    { "searchable": false }, // Kolom NIK
-                    { "searchable": true }, // Kolom Nama Lengkap
-                    { "searchable": true }, // Kolom Tipe surat
-                    { "searchable": false }, // Kolom Tanggal Laporan
-                    { "searchable": false }, // Kolom No Pengajuan
-                    { "searchable": false }  // Kolom Detail
+            $('#datatablesSimple').DataTable({
+                columnDefs: [
+                    { targets: [2, 3, 4], searchable: true }, // Nama Lengkap, Tipe Surat, Tanggal Laporan
+                    { targets: [0, 1, 5, 6], searchable: false } // Kolom lainnya tidak dapat dicari
                 ]
             });
-
-            // // Tambahkan fungsi pencarian
-            // $('#datatablesSimple_filter input').unbind().bind('keyup', function () {
-            //     table.search(this.value).draw();
-            // });
         });
+
+
+
+
     </script>
 
 
@@ -166,7 +181,9 @@ include 'utility/sesionlogin.php';
 
 
 
-
+    <!-- modal -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>

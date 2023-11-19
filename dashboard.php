@@ -8,7 +8,7 @@ $sql = "SELECT
 FROM
     laporan
 WHERE
-    status IN ('proses', 'Selesai')
+    status IN ('Proses', 'Selesai','Masuk','Tolak')
 GROUP BY
     status;";
 
@@ -16,6 +16,8 @@ $result = $conn->query($sql);
 
 // Deklarasikan variabel $surat_selesai
 $surat_selesai = 0;
+$surat_masuk = 0;
+$surat_tolak= 0;
 
 // Periksa apakah query berhasil dieksekusi
 if ($result) {
@@ -25,6 +27,10 @@ if ($result) {
             $surat_proses = $row['total'];
         } elseif ($row['status'] == 'Selesai') {
             $surat_selesai = $row['total'];
+        } elseif ($row['status'] == 'Masuk') {
+            $surat_masuk = $row['total'];
+        } elseif ($row['status'] == 'Tolak') {
+            $surat_tolak = $row['total'];
         }
     }
 } else {
@@ -49,7 +55,7 @@ if ($result) {
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <style>
-        .tampilan{
+        .tampilan {
             color: black;
             text-decoration: none;
         }
@@ -72,20 +78,40 @@ if ($result) {
                         <div class="row gx-5">
                             <div class="col">
                                 <div class="p-3 border bg-light d-flex align-items-center justify-content-center">
-                                    <a class="tampilan" href="suratmasuk.php" >
+                                    <a class="tampilan" href="suratmasuk.php?user=<?php echo htmlentities($user) ?>">
+                                        <span class="name">Surat Masuk : </span>
+                                        <span class="">
+                                            <?php echo htmlentities($surat_masuk); ?>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- <div class="col">
+                                <div class="p-3 border bg-light d-flex align-items-center justify-content-center">
+                                    <a class="tampilan" href="suratmasuk.php?user=<?php echo htmlentities($user) ?>">
                                         <span class="name">Surat Dalam Proses : </span>
                                         <span class="">
                                             <?php echo htmlentities($surat_proses); ?>
                                         </span>
                                     </a>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col">
                                 <div class="p-3 border bg-light d-flex align-items-center justify-content-center">
-                                    <a class="tampilan" href="laporan.php">
+                                    <a class="tampilan" href="laporan.php?user=<?php echo htmlentities($user) ?>">
                                         <span class="name">Surat Selesai : </span>
                                         <span class="">
                                             <?php echo htmlentities($surat_selesai); ?>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="p-3 border bg-light d-flex align-items-center justify-content-center">
+                                    <a class="tampilan" href="laporan.php?user=<?php echo htmlentities($user) ?>">
+                                        <span class="name">Surat Ditolak : </span>
+                                        <span class="">
+                                            <?php echo htmlentities($surat_tolak); ?>
                                         </span>
                                     </a>
                                 </div>

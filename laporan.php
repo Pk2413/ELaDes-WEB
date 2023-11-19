@@ -43,6 +43,7 @@ include 'utility/sesionlogin.php';
                                         <th>Nama</th>
                                         <th>Kode Surat</th>
                                         <th data-search="false">No Pengajuan</th>
+                                        <th data-search="false">Tanggal</th>
                                         <th data-search="false">Status</th>
                                         <th data-search="false">Detail</th>
                                     </tr>
@@ -54,6 +55,7 @@ include 'utility/sesionlogin.php';
                                         <th>Nama</th>
                                         <th>Kode Surat</th>
                                         <th data-search="false">No Pengajuan</th>
+                                        <th data-search="false">Tanggal</th>
                                         <th data-search="false">Status</th>
                                         <th data-search="false">Detail</th>
                                     </tr>
@@ -64,11 +66,12 @@ include 'utility/sesionlogin.php';
 
                                     try {
                                         $sql = "SELECT laporan.id,  pengajuan_surat.nik, pengajuan_surat.nama ,pengajuan_surat.kode_surat,
-                                                pengajuan_surat.no_pengajuan, laporan.status 
+                                                pengajuan_surat.no_pengajuan,laporan.tanggal, laporan.status 
                                                 FROM `laporan`
                                                 join pengajuan_surat
                                                 on pengajuan_surat.id = laporan.id
-                                                GROUP by id desc;";
+                                                GROUP by id 
+                                                ORDER BY tanggal desc ;";
                                         $query = $conn->prepare($sql);
                                         $query->execute();
 
@@ -76,7 +79,7 @@ include 'utility/sesionlogin.php';
                                         $rowCount = $query->num_rows;
 
                                         if ($rowCount > 0) {
-                                            $query->bind_result($id, $nik, $nama, $kode_surat, $no_pengajuan, $status, );
+                                            $query->bind_result($id, $nik, $nama, $kode_surat, $no_pengajuan,$tanggal, $status, );
 
                                             while ($query->fetch()) { ?>
                                                 <tr>
@@ -99,6 +102,9 @@ include 'utility/sesionlogin.php';
                                                     </td>
                                                     <td>
                                                         <?php echo htmlentities($no_pengajuan); ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo htmlentities($tanggal); ?>
                                                     </td>
                                                     <td>
                                                         <?php echo htmlentities($status); ?>
@@ -138,27 +144,27 @@ include 'utility/sesionlogin.php';
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            new simpleDatatables.DataTable('#datatablesSimple', {
-                "searchable": true,
-                "columns": [
-                    { "searchable": false }, // Kolom ID
-                    { "searchable": true },  // Kolom NIK
-                    { "searchable": true },  // Kolom Nama Lengkap
-                    { "searchable": true },  // Kolom Kode Surat
-                    { "searchable": false }, // Kolom No Pengajuan
-                    { "searchable": false },  // Kolom Status
-                    { "searchable": false }  // Kolom Detail
-                ]
-            });
-        });
+    // $(document).ready(function() {
+//     $('#datatablesSimple').DataTable({
+//         columnDefs: [
+//             { targets: [2, 3, 4], searchable: true }, // Nama Lengkap, Tipe Surat, Tanggal Laporan
+//             { targets: [0, 1, 5, 6], searchable: false } // Kolom lainnya tidak dapat dicari
+//         ]
+//     });
+// });
 
-
-
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     alert('Hello, JavaScript is working!');
-        // });
-
+$('#datatablesSimple').dataTable( {
+    "columns": [
+    null,
+    { "searchable": true },
+    { "searchable": true },
+    { "searchable": false },
+    { "searchable": false },
+    { "searchable": false },
+    { "searchable": false },
+    null
+  ] } );
+});
 
     </script>
 
@@ -178,6 +184,8 @@ include 'utility/sesionlogin.php';
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
+
+    
 </body>
 
 </html>

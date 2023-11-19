@@ -5,10 +5,10 @@ $no_pengajuan = $_GET['no_pengajuan'];
 $kode_surat = $_GET['kode_surat'];
 $id = $_GET['id'];
 
-$query = "update laporan set status = 'Proses' where id = ? ";
-$stmt = mysqli_prepare($conn, $query);
-mysqli_stmt_bind_param($stmt, "s", $id);
-mysqli_stmt_execute($stmt);
+// $query = "update laporan set status = 'Proses' where id = ? ";
+// $stmt = mysqli_prepare($conn, $query);
+// mysqli_stmt_bind_param($stmt, "s", $id);
+// mysqli_stmt_execute($stmt);
 
 
 
@@ -47,7 +47,7 @@ function update()
                 <div class="container-fluid  px-5">
                     <h1 class="" style="margin-top: 50px;">Detail Pengajuan Surat</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="suratmasuk.php">Pengajuan Surat</a></li>
+                        <li class="breadcrumb-item"><a href="suratmasuk.php?user=<?php echo htmlentities($user); ?>">Pengajuan Surat</a></li>
                         <li class="breadcrumb-item active">Detail Pengajuan Surat</li>
                     </ol>
 

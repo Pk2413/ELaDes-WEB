@@ -1,30 +1,50 @@
 <?php
-// Check if 'id' parameter is set in the GET request
-if (isset($_GET['id'])) {
-    // Get the 'id' from the GET request
-    $id = $_GET['id'];
+// utility/proses_tolak.php
 
-    // Your database connection code goes here
-    require("../koneksi.php");
+// Check if 'id' parameter is set in the POST request
+if (isset($_POST['id'])) {
+    // Get the 'id' from the POST request
+    $id = $_POST['id'];
 
-    // SQL query to delete the record
-    $sql = "UPDATE `laporan` SET status='Tolak' WHERE id = $id";
+    // Check if 'alasan' is set in the POST request
+    if (isset($_POST['alasan'])) {
+        // Get the 'alasan' from the POST request
+        $alasan = $_POST['alasan'];
 
-    // Execute the query
-    $eksekusi = mysqli_query($conn, $sql);
+        // Your database connection code goes here
+        require("../koneksi.php");
 
-    // Check if the query was successful
-    if ($eksekusi) {
-        // Redirect back to the previous page
-        header("Location: ".$_SERVER['HTTP_REFERER']);
-        exit();
+        // Use prepared statements to prevent SQL injection
+        $sql = "UPDATE `laporan` SET status='Tolak', alasan = ? WHERE id = ?";
+        
+        // Prepare the statement
+        $stmt = mysqli_prepare($conn, $sql);
+
+        // Bind the parameters
+        mysqli_stmt_bind_param($stmt, "si", $alasan, $id);
+
+        // Execute the statement
+        $eksekusi = mysqli_stmt_execute($stmt);
+
+        // Check if the query was successful
+        if ($eksekusi) {
+            // Redirect back to the previous page
+            header("Location: ".$_SERVER['HTTP_REFERER']);
+            exit();
+        } else {
+            // If the query fails, display an error message
+            echo "Error: " . mysqli_error($conn);
+        }
+
+        // Close the statement
+        mysqli_stmt_close($stmt);
+
+        // Close the database connection
+        mysqli_close($conn);
     } else {
-        // If the query fails, display an error message
-        echo "Error: " . $sql . "<br>" . mysqli_error($konek);
+        // If 'alasan' parameter is not set, display an error message
+        echo "Invalid request. 'alasan' parameter is missing.";
     }
-
-    // Close the database connection
-    mysqli_close($konek);
 } else {
     // If 'id' parameter is not set, display an error message
     echo "Invalid request. 'id' parameter is missing.";
