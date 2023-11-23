@@ -162,7 +162,7 @@ $('#datatablesSimple').dataTable( {
     { "searchable": false },
     { "searchable": false },
     { "searchable": false },
-    null
+    nulll
   ] } );
 });
 

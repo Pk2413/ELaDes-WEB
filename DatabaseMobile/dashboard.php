@@ -5,7 +5,6 @@ $user = $_POST['username'];
 // $status = $_POST['status'];
 
 $sql= "SELECT 
-sum( case when  laporan.status = 'Proses' then 1 else 0 end) as Proses,
 sum(case when laporan.status = 'Selesai' then 1 else 0 end ) as Selesai,
 sum(case when laporan.status = 'Masuk' then 1 else 0 end ) as Masuk,
 sum(case when laporan.status = 'Tolak' then 1 else 0 end ) as Tolak
@@ -24,7 +23,6 @@ if ($eksekusi) {
     $response['kode'] = true;
     $response['pesan'] = "Berhasil Mengambil Data";
     $response["data"] = array();
-    $data["Proses"] = $ambil->Proses;
     $data["Selesai"] = $ambil->Selesai;
     $data["Masuk"] = $ambil->Masuk;
     $data["Tolak"] = $ambil->Tolak;

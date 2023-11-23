@@ -43,7 +43,7 @@
                                                 <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
                                             </div> -->
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small" href="verKodeOtp/">Lupa Password?</a>
+                                            <a class="small" href="verKodeOtp/proses_kirimkodeotp.php">Lupa Password?</a>
                                             <input class="btn btn-primary" type="submit" value="Login">
                                         </div>
                                         <?php

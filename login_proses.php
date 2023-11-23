@@ -22,6 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = mysqli_fetch_assoc($result);
         $id = $row['id'];
 
+        session_start();
+         $_SESSION['username']=$id;
+
         // Jika pengguna terdaftar, alihkan ke halaman dashboard.php atau halaman lain yang sesuai
         header("location: dashboard.php?user=" . htmlentities($id));
         exit();

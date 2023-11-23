@@ -5,6 +5,20 @@ $kode = $_POST['kode'] ?? null;
 $no = $_POST['no_pengajuan'] ?? null;
 // echo $no."<br>";
 
+$sql = "SELECT sktm.*, pengajuan_surat.id FROM sktm 
+INNER JOIN pengajuan_surat
+on sktm.no_pengajuan = pengajuan_surat.no_pengajuan
+WHERE sktm.no_pengajuan ='$no'";
+$result = $konek->query($sql);
+
+$response = array();
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+
+    $id = $row['id'];
+}
+
 if ($kode == 0) {
     include("../Koneksi.php");
     
@@ -101,6 +115,13 @@ $sql = "UPDATE `sktm` SET
         `alamat_anak`='$alamatanak'
         WHERE `no_pengajuan`='$no'";
 $eksekusi = mysqli_query($konek, $sql);
+
+$sql = "UPDATE `laporan` SET 
+    `status`='Masuk'
+    WHERE `id`='$id'";
+    $eksekusi = mysqli_query($konek, $sql);
+
+    $response = array();
 
 $response = array();
 

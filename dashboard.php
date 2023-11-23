@@ -76,7 +76,7 @@ if ($result) {
                     <h1 class="" style="margin-top: 50px;">Dashboard</h1>
                     <div class="container-fluid" style="margin-bottom: 30px; margin-top: 30px;">
                         <div class="row gx-5">
-                            <div class="col">
+                            <div class="col-4">
                                 <div class="p-3 border bg-light d-flex align-items-center justify-content-center">
                                     <a class="tampilan" href="suratmasuk.php?user=<?php echo htmlentities($user) ?>">
                                         <span class="name">Surat Masuk : </span>
@@ -96,7 +96,7 @@ if ($result) {
                                     </a>
                                 </div>
                             </div> -->
-                            <div class="col">
+                            <div class="col-4">
                                 <div class="p-3 border bg-light d-flex align-items-center justify-content-center">
                                     <a class="tampilan" href="laporan.php?user=<?php echo htmlentities($user) ?>">
                                         <span class="name">Surat Selesai : </span>
@@ -106,7 +106,7 @@ if ($result) {
                                     </a>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-4">
                                 <div class="p-3 border bg-light d-flex align-items-center justify-content-center">
                                     <a class="tampilan" href="laporan.php?user=<?php echo htmlentities($user) ?>">
                                         <span class="name">Surat Ditolak : </span>
