@@ -86,16 +86,6 @@ if ($result) {
                                     </a>
                                 </div>
                             </div>
-                            <!-- <div class="col">
-                                <div class="p-3 border bg-light d-flex align-items-center justify-content-center">
-                                    <a class="tampilan" href="suratmasuk.php?user=<?php echo htmlentities($user) ?>">
-                                        <span class="name">Surat Dalam Proses : </span>
-                                        <span class="">
-                                            <?php echo htmlentities($surat_proses); ?>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div> -->
                             <div class="col-4">
                                 <div class="p-3 border bg-light d-flex align-items-center justify-content-center">
                                     <a class="tampilan" href="laporan.php?user=<?php echo htmlentities($user) ?>">

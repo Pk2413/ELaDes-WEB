@@ -1,5 +1,5 @@
 <?php
-include("Koneksi.php");
+require("Koneksi.php");
 
 $perintah = "SELECT * from surat";
 $eksekusi = mysqli_query($konek, $perintah);

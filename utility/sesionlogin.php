@@ -1,6 +1,8 @@
 <?php
 include 'koneksi.php';
-$user = $_GET['user'];
+// $user = $_GET['user'];
+session_start();
+$user = $_SESSION['username'];
 
 $query = "SELECT * FROM akun_admin WHERE username = ? ";
 $stmt = mysqli_prepare($conn, $query);

@@ -1,5 +1,6 @@
 <?php
 include("../Koneksi.php");
+include 'update.php';
 
 $kode = $_POST['kode'] ?? null;
 $no = $_POST['no_pengajuan'] ?? null;
@@ -34,7 +35,7 @@ if ($kode == 0) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-        $id = $row['id'];
+        // $id = $row['id'];
 
         // Pisahkan tempat dan tanggal menggunakan koma sebagai pemisah
         $hasil = explode(", ", $row["tempat_tgl_lahir"]);
@@ -108,6 +109,10 @@ if ($kode == 0) {
         // Jika insert berhasil
         $response['kode'] = true;
         $response['pesan'] = "Data berhasil ditambahkan";
+
+        $kode_surat = "skck";
+        updatelaporan($no,$kode_surat);
+       
     } else {
         // Jika insert gagal
         $response['kode'] = false;

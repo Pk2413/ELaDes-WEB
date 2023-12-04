@@ -31,7 +31,7 @@ if ($cek = 0) {
         $mail->sendEmail($email, $type, $kode_otp);
         
         // jika username belum terdaftar, lakukan proses registrasi
-        $perintah = "UPDATE `akun_user` SET `kode_otp` = '$kode_otp' Where username = '$username'";
+        $perintah = "UPDATE `akun_admin` SET `kode_otp` = '$kode_otp' Where username = '$username'";
         $eksekusi = mysqli_query($conn, $perintah);
 
         
@@ -42,7 +42,7 @@ if ($cek = 0) {
             header("Location: ./");
         }else {
             $response["kode"]= 2;
-            $response["pesan"] = "koed otp gagal diupdate";
+            $response["pesan"] = "kode otp gagal diupdate";
             // header("Location: ../");
         }
     }

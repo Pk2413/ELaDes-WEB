@@ -48,23 +48,28 @@ include 'utility/sesionlogin.php';
                                         <th>Detail</th>
                                     </tr>
                                 </thead>
-                                <!-- <tfoot>
-                                        <tr>
+                                <tfoot>
+                                    <tr>
                                         <th>ID</th>
-                <th>NIK</th>
-                <th>Nama Lengkap</th>
-                <th>Tipe Surat</th>
-                <th>Tanggal Laporan</th>
-                <th>no Pengajuan</th>
-                <th>Detail</th>
-                                        </tr>
-                                    </tfoot> -->
+                                        <th>NIK</th>
+                                        <th>Nama Lengkap</th>
+                                        <th>Tipe Surat</th>
+                                        <th>Tanggal Laporan</th>
+                                        <th>no Pengajuan</th>
+                                        <th>Detail</th>
+                                    </tr>
+                                </tfoot>
                                 <tbody>
                                     <?php
                                     include("koneksi.php");
 
                                     try {
-                                        $sql = "SELECT pengajuan_surat.id as id, pengajuan_surat.nik, pengajuan_surat.nama, pengajuan_surat.kode_surat, pengajuan_surat.tanggal, pengajuan_surat.no_pengajuan
+                                        $sql = "SELECT pengajuan_surat.id as id, 
+                                        pengajuan_surat.nik, 
+                                        pengajuan_surat.nama, 
+                                        pengajuan_surat.kode_surat, 
+                                        pengajuan_surat.tanggal, 
+                                        pengajuan_surat.no_pengajuan
                                         FROM pengajuan_surat
                                         JOIN laporan
                                         on pengajuan_surat.id = laporan.id
@@ -108,10 +113,14 @@ include 'utility/sesionlogin.php';
                                                             href="suratmasuk_detail.php?no_pengajuan=<?php echo urlencode(trim($no_pengajuan)); ?>&kode_surat=<?php echo urlencode(trim(htmlentities($kode_surat))); ?>&id=<?php echo urlencode(trim(htmlentities($id))); ?>&user=<?php echo htmlentities($user) ?>">
                                                             Detail
                                                         </a>
-                                                        <a class="btn btn-danger" role="button" href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#confirmationModal">
+                                                        <!-- <a class="btn btn-danger" role="button" href="#" data-bs-toggle="modal"
+                                                            data-bs-target="#confirmationModal"
+                                                            data-bs-whatever="<?php echo urlencode(trim(htmlentities($id))); ?>">
                                                             Tolak
-                                                        </a>
+                                                        </a> -->
+                                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal"
+                                                            data-bs-whatever="<?php echo urlencode(trim(htmlentities($id))); ?>">Tolak</button>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -132,7 +141,55 @@ include 'utility/sesionlogin.php';
         </div>
     </div>
 
-    <!-- Modal -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tolak Surat id :</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="utility/proses_tolak.php" method="POST">
+                        <div class="mb-3">
+                            <input type="hidden" class="form-control" id="id" name="id" placeholder="id">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Alasan:</label>
+                            <textarea class="form-control" id="alasan" id="alasan" name="alasan"
+                                placeholder="alasan"></textarea>
+                        </div>
+                        <div class="modal-footer">
+
+                            <button type="submit" class="btn btn-danger">Ya, Tolak</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        var exampleModal = document.getElementById('exampleModal')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+            // Button that triggered the modal
+            var button = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            var recipient = button.getAttribute('data-bs-whatever')
+            // If necessary, you could initiate an AJAX request here
+            // and then do the updating in a callback.
+            //
+            // Update the modal's content.
+            var modalTitle = exampleModal.querySelector('.modal-title')
+            var modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+            modalTitle.textContent = 'Tolak Pesan Untuk Id Surat : ' + recipient
+            modalBodyInput.value = recipient
+        })
+    </script>
+
+
+    <!-- Modal
     <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -144,10 +201,10 @@ include 'utility/sesionlogin.php';
                 <div class="modal-body">
                     <p>Apakah Anda yakin akan menolak surat?</p>
                     <form action="utility/proses_tolak.php" method="post">
-                        <!-- Tambahkan input tersembunyi untuk mengirimkan ID atau data lain yang diperlukan -->
-                        <input type="hidden" id="id" name="id" value="<?php echo htmlentities($id); ?>">
+                        Tambahkan input tersembunyi untuk mengirimkan ID atau data lain yang diperlukan
+                        <input type="hidden" id="id" name="" value="<?php echo htmlentities($id); ?>">
 
-                        <!-- Input untuk alasan -->
+                        Input untuk alasan
                         <div class="mb-3">
                             <label for="alasan" class="form-label">Alasan:</label>
                             <textarea class="form-control" id="alasan" name="alasan" rows="4" required></textarea>
@@ -158,10 +215,37 @@ include 'utility/sesionlogin.php';
                 </div>
             </div>
         </div>
-    </div>
-
+    </div> -->
+    <!-- Tambahkan script Bootstrap JavaScript dan Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
 
     <script>
+        // Tangkap event yang terjadi setelah modal ditampilkan
+        $('#confirmationModal').on('show.bs.modal', function (event) {
+            // Ambil tombol yang memunculkan modal
+            var button = $(event.relatedTarget);
+
+            // Ambil baris (parent) tombol yang diklik
+            var row = button.closest('tr');
+
+            // Ambil nilai dari kolom pertama pada baris yang sesuai
+            var idToSend = row.find('td:first').text();
+
+            // Setel nilai ID di dalam modal dan input tersembunyi
+            $('#id').val(idToSend);
+        });
+
+        // Fungsi untuk mengirim data ke PHP
+        function kirimData() {
+            // Tidak perlu lagi mengambil nilai inputText karena kita menggunakan formulir
+            // Formulir ini akan secara otomatis mengirim nilai ID dan alasan ke PHP
+        }
+
+
+
+
+
         $(document).ready(function () {
             $('#datatablesSimple').DataTable({
                 columnDefs: [

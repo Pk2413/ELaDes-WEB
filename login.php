@@ -22,12 +22,13 @@
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header">
-                                    <img src="gambar/Logo-Kabupaten-Nganjuk-Warna-removebg-preview 2.png" class="mx-auto d-block" alt="Logo" style="width: 30%;" >
+                                    <img src="gambar/Logo-Kabupaten-Nganjuk-Warna-removebg-preview 2.png" class="mx-auto d-block" alt="Logo" 
+                                    style="width: 30%;" >
                                     <h3 class="text-center font-weight-light ">Login</h3>
                                     
                                 </div>
                                 <div class="card-body">
-                                    <form method="POST" name="login">
+                                    <form action="login_proses.php" method="POST" name="login">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="username" name="username" type="text"
                                                 placeholder="Username" required />
@@ -43,12 +44,9 @@
                                                 <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
                                             </div> -->
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small" href="verKodeOtp/proses_kirimkodeotp.php">Lupa Password?</a>
+                                            <a class="small" href="verKodeOTP/proses_kirimkodeotp.php">Lupa Password?</a>
                                             <input class="btn btn-primary" type="submit" value="Login">
                                         </div>
-                                        <?php
-                                        require 'login_proses.php';
-                                        ?>
                                     </form>
                                 </div>
                             </div>
@@ -56,6 +54,26 @@
                     </div>
 
             </main>
+
+            <!-- Modal -->
+    <div class="modal" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="errorModalLabel">Error</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p class="error-message">Login gagal. Silakan coba lagi.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
         </div>
         <footer class="sticky-footer bg-white mt-auto py-4 g-col-12">
@@ -79,6 +97,16 @@
         crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
     <script src="js/toast.js"></script>
+    <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var showErrorModal = <?php echo isset($_GET['error']) ? 'true' : 'false'; ?>;
+    if (showErrorModal) {
+      var myModal = new bootstrap.Modal(document.getElementById('errorModal'));
+      myModal.show();
+    }
+  });
+</script>
+
 </body>
 
 </html>

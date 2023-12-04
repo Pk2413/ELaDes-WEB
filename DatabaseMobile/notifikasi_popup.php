@@ -1,5 +1,5 @@
 <?php
-include('koneksi.php');
+require('koneksi.php');
 
 // Username yang diinginkan
 $username = $_POST['username'];
@@ -8,12 +8,13 @@ $username = $_POST['username'];
 $sql = "SELECT pengajuan_surat.id, 
                pengajuan_surat.no_pengajuan, 
                pengajuan_surat.kode_surat, 
-               laporan.tanggal, 
+               Date(laporan.tanggal) as tanggal,
+               Time(laporan.tanggal) as jam, 
                laporan.status, 
                laporan.alasan 
         FROM pengajuan_surat
         JOIN laporan ON laporan.id = pengajuan_surat.id
-        WHERE pengajuan_surat.username = '$username' AND laporan.status ='Tolak'
+        WHERE pengajuan_surat.username = '$username' AND laporan.status ='Tolak' or laporan.status ='Selesai'
         GROUP BY pengajuan_surat.id
         ORDER BY laporan.tanggal DESC";
 
@@ -31,6 +32,8 @@ if ($result->num_rows > 0) {
     $response['status'] = $row->status;
     $response['pesan'] = "Data Tersedia";
     $response['alasan'] = $row->alasan;
+    $response['tanggal'] = $row->tanggal;
+    $response['jam'] = $row->jam;
     // $response["data"] = array();
     // while ($row = $result->fetch_object()) {
     //     $data['id'] = $row->id;

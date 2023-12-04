@@ -68,7 +68,7 @@ exit();
 function update($id)
 {
     require('../Koneksi.php');
-    $updateQuery = $conn->prepare("UPDATE laporan SET status = 'Selesai' WHERE id = ?");
+    $updateQuery = $conn->prepare("UPDATE laporan SET status = 'Selesai', alasan ='Surat telah selesai diproses silakan ambil di kantor Desa' WHERE id = ?");
     $updateQuery->bind_param("i", $id);
     $updateQuery->execute();
     $updateQuery->close();

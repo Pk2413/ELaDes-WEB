@@ -22,7 +22,8 @@ style="height: 80px; ">
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="crud/gantipasswordadmin.php">Ganti Password</a></li>
                         <li><hr class="dropdown-divider" /></li>    
-                        <li><a class="dropdown-item" href="index.html">Keluar</a></li>
+                        <li><a class="dropdown-item" href="utility/logout.php">
+                        Keluar</a></li>
                     </ul>
                 </li>
             </ul>

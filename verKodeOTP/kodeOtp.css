@@ -49,7 +49,24 @@ input{
     width: 400px;
     background-color: #EAEEED;
 }
-button{
+/* Tambahkan styling untuk tombol kirim ulang */
+/* Tambahkan styling untuk tombol kirim ulang */
+.btn-kirim-ulang {
+    margin-top: 30px;
+    padding: 12px 48px;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none; /* Tambahkan ini untuk menghapus garis bawah default pada elemen anchor */
+    display: inline-block; /* Tambahkan ini untuk membuat elemen anchor memiliki perilaku inline-block */
+    background-color: #3255D0;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Tambahkan styling untuk tombol verifikasi */
+.btn-verifikasi {
+    margin: 10px;
     padding: 12px 48px;
     border-radius: 50px;
     color: white;
@@ -58,15 +75,21 @@ button{
     border-width: 0;
     background-color: #3255D0;
     font-weight: 600;
-    width: 200px;
-    /* align-items: center; */
-    /* justify-content: center;
-    display: flex; */
-    
-    margin-top: 30px;
-    margin-bottom: 0px;
 }
+
+/* Gantilah btn dengan flex-direction: column */
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Tambahkan ini */
+}
+
+
 button:hover{
+    opacity: 0.8;
+}
+a:hover{
     opacity: 0.8;
 }
 .btn{

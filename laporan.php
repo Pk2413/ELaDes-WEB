@@ -65,8 +65,9 @@ include 'utility/sesionlogin.php';
                                     include("koneksi.php");
 
                                     try {
-                                        $sql = "SELECT laporan.id,  pengajuan_surat.nik, pengajuan_surat.nama ,pengajuan_surat.kode_surat,
-                                                pengajuan_surat.no_pengajuan,laporan.tanggal, laporan.status 
+                                        $sql = "SELECT laporan.id,  pengajuan_surat.nik, 
+                                        pengajuan_surat.nama ,pengajuan_surat.kode_surat,
+                                        pengajuan_surat.no_pengajuan,laporan.tanggal, laporan.status 
                                                 FROM `laporan`
                                                 join pengajuan_surat
                                                 on pengajuan_surat.id = laporan.id
@@ -164,7 +165,6 @@ $('#datatablesSimple').dataTable( {
     { "searchable": false },
     nulll
   ] } );
-});
 
     </script>
 

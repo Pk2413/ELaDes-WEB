@@ -8,10 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mengenkripsi password yang diinputkan menggunakan MD5
     $password_md5 = md5($password);
 
-    $successMessage = "Login successful";
-    $errorMessage = "Login failed. Please try again.";
-
-    // Menggunakan parameterized query untuk menghindari SQL injection
     $query = "SELECT username as id FROM akun_admin WHERE username = ? AND password = ?";
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "ss", $user, $password_md5);
@@ -23,16 +19,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = $row['id'];
 
         session_start();
-         $_SESSION['username']=$id;
+        $_SESSION['username'] = $id;
 
         // Jika pengguna terdaftar, alihkan ke halaman dashboard.php atau halaman lain yang sesuai
-        header("location: dashboard.php?user=" . htmlentities($id));
+        header("location: dashboard.php");
         exit();
     } else {
-        // Jika login gagal, tampilkan pesan kesalahan
-        echo '<script>';
-        echo 'alert("' . $errorMessage . '");';
-        echo '</script>';
+        // Redirect ke halaman login dengan parameter error
+        header("location: login.php?error=1");
+        exit();
     }
 
     // Tutup statement

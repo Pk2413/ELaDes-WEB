@@ -3,13 +3,31 @@ include 'utility/sesionlogin.php';
 
 $no_pengajuan = $_GET['no_pengajuan'];
 $kode_surat = $_GET['kode_surat'];
-$id = $_GET['id'];
+$id = $_GET['id'] ?? null;
 
-// $query = "update laporan set status = 'Proses' where id = ? ";
-// $stmt = mysqli_prepare($conn, $query);
-// mysqli_stmt_bind_param($stmt, "s", $id);
-// mysqli_stmt_execute($stmt);
+// $query = "SELECT status FROM laporan where id ='$id'";
+// $result = $conn->query($query);
 
+// if ($result->num_rows > 0) {
+//     $row = $result->fetch_assoc();
+//     $data = $row['status'];
+
+//     if($data == "Tolak"){
+
+//     }
+//     elseif($data == "Masuk"){
+    if($id != null){
+        $query = "update laporan set status = 'Proses' where id = ? ";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "s", $id);
+        mysqli_stmt_execute($stmt);
+    }
+
+   
+//     }
+// } else {
+//     $data = "Error Pada id"; // Atau sesuaikan dengan nilai default jika tidak ada data
+// }
 
 
 
@@ -47,7 +65,8 @@ function update()
                 <div class="container-fluid  px-5">
                     <h1 class="" style="margin-top: 50px;">Detail Pengajuan Surat</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="suratmasuk.php?user=<?php echo htmlentities($user); ?>">Pengajuan Surat</a></li>
+                        <li class="breadcrumb-item"><a
+                                href="suratmasuk.php?user=<?php echo htmlentities($user); ?>">Pengajuan Surat</a></li>
                         <li class="breadcrumb-item active">Detail Pengajuan Surat</li>
                     </ol>
 
@@ -61,7 +80,7 @@ function update()
                                         <h3>
                                             <?php
                                             // include("koneksi.php");
-
+                                            
                                             $query = "SELECT keterangan FROM surat where kode_surat ='$kode_surat'";
                                             $result = $conn->query($query);
 
@@ -91,7 +110,7 @@ function update()
                                     // echo $query;
                                     // $result = mysql_query($conn,$query);
                                     $query->execute();
-                                    $result = $query->get_result(); 
+                                    $result = $query->get_result();
 
 
                                     if ($result->num_rows > 0) {
@@ -131,7 +150,8 @@ function update()
                     <div class="row gx-5">
                         <div class="col">
                             <div>
-                                <select id="selectOption" class="form-select form-select-lg mb-3" aria-label="Default select example">
+                                <select id="selectOption" class="form-select form-select-lg mb-3"
+                                    aria-label="Default select example">
                                     <option value="kepaladesa">Kepala Desa</option>
                                     <option value="carik">Carik</option>
                                 </select>
@@ -179,7 +199,7 @@ function update()
 
                 // Check if values are not empty before redirecting
                 if (no_pengajuan && kode_surat) {
-                    var url = "template%20surat/cek.php?no_pengajuan=" + encodeURIComponent(no_pengajuan) + "&kode_surat=" + encodeURIComponent(kode_surat) + "&ttd=" + encodeURIComponent(selectedOption)+ "&print=" +false;
+                    var url = "template%20surat/cek.php?no_pengajuan=" + encodeURIComponent(no_pengajuan) + "&kode_surat=" + encodeURIComponent(kode_surat) + "&ttd=" + encodeURIComponent(selectedOption);
                     window.location.href = url;
                 } else {
                     alert("Error: Values not set.");
@@ -192,7 +212,7 @@ function update()
                 var no_pengajuan = "<?php echo htmlentities($no_pengajuan); ?>";
                 var kode_surat = "<?php echo htmlentities($kode_surat); ?>";
                 // Ganti URL dengan URL file yang ingin dicetak
-                var fileURL = "template%20surat/cek.php?no_pengajuan=" + encodeURIComponent(no_pengajuan) + "&kode_surat=" + encodeURIComponent(kode_surat) + "&ttd=" + encodeURIComponent(selectedOption) + "&print=" + true;
+                var fileURL = "template%20surat/cek.php?no_pengajuan=" + encodeURIComponent(no_pengajuan) + "&kode_surat=" + encodeURIComponent(kode_surat) + "&ttd=" + encodeURIComponent(selectedOption);
 
                 // Buka file di jendela baru
                 var newWindow = window.open(fileURL, '_blank');
@@ -205,8 +225,8 @@ function update()
                     // Tunggu sebentar sebelum menutup jendela
                     setTimeout(function () {
                         newWindow.close(); // Menutup jendela setelah mencetak
-                    }, 1000);
-                }, 500); // Waktu penundaan sebelum mencetak (ms), bisa disesuaikan
+                    }, 4000);
+                }, 1000); // Waktu penundaan sebelum mencetak (ms), bisa disesuaikan
             }
         </script>
 </body>

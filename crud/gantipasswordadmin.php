@@ -1,5 +1,5 @@
 <?php
-require("../DatabaseMobile/Koneksi.php");
+require("../koneksi.php");
 require ("../DatabaseMobile/sender/phpmailer.php");
 require ('../DatabaseMobile/vendor/autoload.php'); 
 
@@ -11,7 +11,7 @@ $kode_otp = mt_rand(100000, 999999);
 
 // periksa  apakah email sudah terdaftar 
 $perintah = "SELECT * FROM `akun_admin` WHERE 1";
-$eksekusi = mysqli_query($konek, $perintah);
+$eksekusi = mysqli_query($conn, $perintah);
 $cek = mysqli_num_rows($eksekusi);
 
 $response = array();
@@ -26,14 +26,14 @@ if ($cek = 0) {
         $email = $data['email'];
         $username = $data['username'];
         $type = "Lupa Password";
-        echo $username."\n".$email."\n";
-        echo $kode_otp;
+        // echo $username."\n".$email."\n";
+        // echo $kode_otp;
         $mail = new EmailSender();
         $mail->sendEmail($email, $type, $kode_otp);
         
         // jika username belum terdaftar, lakukan proses registrasi
         $perintah = "UPDATE `akun_admin` SET `kode_otp` = '$kode_otp' Where username = '$username'";
-        $eksekusi = mysqli_query($konek, $perintah);
+        $eksekusi = mysqli_query($conn, $perintah);
 
         
 

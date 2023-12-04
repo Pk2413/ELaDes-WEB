@@ -20,6 +20,16 @@ if ($cek > 0) {
     $response["pesan"] = "Data Tersedia";
     $response["data"] = array();
 
+    $ambil = mysqli_fetch_object($eksekusi);
+    $F["id"] = $ambil->no_pengajuan;
+    $F["kode_surat"] = $ambil->kode_surat;
+    $F["nama"] = $ambil->nama;
+    $F["nik"] = $ambil->nik;
+    $F["no_pengajuan"] = $ambil->no_pengajuan;
+    $F["tanggal"] = $ambil->tanggal;
+    $F["status"] = $ambil->status;
+    array_push($response["data"], $F);
+
     while ($ambil = mysqli_fetch_object($eksekusi)) {
         $F["id"] = $ambil->no_pengajuan;
         $F["kode_surat"] = $ambil->kode_surat;

@@ -17,6 +17,7 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
 
     $id = $row['id'];
+    // echo $id;
 }
 
 
@@ -109,9 +110,7 @@ if ($kode == 0) {
     `status`='Masuk'
     WHERE `id`='$id'";
     $eksekusi = mysqli_query($konek, $sql);
-
-    $response = array();
-
+    
     $response = array();
 
     if ($eksekusi) {
